@@ -21,9 +21,6 @@ public class CoffeeController {
 	@RequestMapping("/verifyTraitor")
 	public ModelAndView verifyTraitor(@RequestParam("firstName") String fName, @RequestParam("lastName") String lName, @RequestParam("email") String email, @RequestParam("phone") String phone, @RequestParam("passWord") String pWord, @RequestParam("passWord2") String pWord2) {
 		ModelAndView mv = new ModelAndView("verifyTraitor");
-//		if (pWord.equals(pWord2)) {
-//			
-//		}
 		
 		mv.addObject("firstName", fName);
 		mv.addObject("lastName", lName);
@@ -34,11 +31,13 @@ public class CoffeeController {
 	
 	}
 	
+	
 	@RequestMapping("/addTraitor")
 	public ModelAndView addTraitor(@RequestParam("firstName") String fName) {
 		ModelAndView mv = new ModelAndView("addTraitor");
 		mv.addObject("firstName", fName);
 		return mv;
 	}
+
 	
 }

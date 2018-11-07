@@ -24,7 +24,7 @@
 		<br>
 		<br>
 		<br>
-		<a href="/traitor">Submit.</a>
+		<a href="/traitor"><font color="white">Submit.</font></a>
 		
 		
 </body>
