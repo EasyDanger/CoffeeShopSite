@@ -1,0 +1,4 @@
+coffee®~~~1.99~~~coffee® brand product~~~Coffee
+expresso®~~~3.99~~~Denser, more concentrated coffee® brand product~~~MenuItem
+cappuchino®~~~5.99~~~Foamed milk, made with expresso®~~~Coffee
+lotté®~~~5.99~~~Lightly aerated milk, made with expresso~~~Coffee

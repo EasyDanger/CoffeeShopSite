@@ -57,6 +57,15 @@
 					class="input"
 				/></span>
 			</P>
+			<p>
+				User Name: 
+				<span style="float:right;"><input 
+					name="Name"
+					required
+					placeholder="Human"
+					class="input"
+				/></span>
+			</p>
 			<P>
 				Password:<span style="float:right;">
 				<input
@@ -67,6 +76,7 @@
 					onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.passWord2.pattern = this.value;"
 					required
 					class="input"
+					placeholder="a-Z,0-9,!@#$%^&*"
 				/></span>
 			</P>
 			<P>
@@ -82,7 +92,10 @@
 					class="input"
 				/></span>
 			</P>
-			<br>
+			<p><input type="checkbox" name="box" value="true" required><span style="float:right;">
+			 * I agree to all terms of submission.<br>
+			</span></p>
+			<br><br>
 			<div style="text-align:center"><button>SUBMIT.</button></div>
 		</form>
 	</div>

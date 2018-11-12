@@ -14,17 +14,17 @@
 <title>Verify</title>
 </head>
 <body>
-	<h1>Hello, ${ firstName }</h1>
+	<h1>Hello, ${ user.name }</h1>
 	<h2>Please verify your submission details below.</h2>
-	<p>First Name: ${ firstName }</p>
-	<p>Last Name: ${ lastName }</p>
-	<p>Email Address: ${ email }</p>
-	<p>Phone Number: ${ phone }</p>
+	<p>First Name: ${ user.fname }</p>
+	<p>Last Name: ${ user.lname }</p>
+	<p>Email Address: ${ user.email }</p>
+	<p>Phone Number: ${ user.phone }</p>
 	<br>
 	<br>
 	<p>
 		If the above information is correct/true,
-		<a href="/addTraitor?firstName=${ firstName }">click here to
+		<a href="/addTraitor?user=${ user }">click here to
 			continue your submission.</a>
 	</p>
 	<br>
