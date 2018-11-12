@@ -15,6 +15,7 @@
 <p> Your submission has been accepted, ${ user.name }</p>
 <h3>Welcome to coffee®</h3>
 <h2>Welcome to the experience</h2>
-<h1>Welcome® to® your® new® life®</h1>
+<h1>Welcome® to® your® new® life®</h1><br><br><br>
+<h5><a href="/">Navigate back to login page.</a></h5>
 </body>
 </html>

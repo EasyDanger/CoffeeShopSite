@@ -1,7 +1,7 @@
 <%@ page
 	language="java"
-	contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
+	contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"
 %>
 <!DOCTYPE html>
 <html>
@@ -14,18 +14,20 @@
 <title>Verify</title>
 </head>
 <body>
-	<h1>Hello, ${ user.name }</h1>
+	<h1>Hello, ${ Name }</h1>
 	<h2>Please verify your submission details below.</h2>
-	<p>First Name: ${ user.fname }</p>
-	<p>Last Name: ${ user.lname }</p>
-	<p>Email Address: ${ user.email }</p>
-	<p>Phone Number: ${ user.phone }</p>
+	<p>First Name: ${ firstName }</p>
+	<p>Last Name: ${ lastName }</p>
+	<p>Email Address: ${ email }</p>
+	<p>Phone Number: ${ phone }</p>
 	<br>
 	<br>
 	<p>
 		If the above information is correct/true,
-		<a href="/addTraitor?user=${ user }">click here to
-			continue your submission.</a>
+		<!--&firstName=Edward&lastName=Carter&email=carteroffice%40gmail.com&phone=%28313%29+867-5309&Name=EasyDanger&passWord=HomeRow-->
+		<a
+			href="/addTraitor?firstName=${ firstName }&Name=${ Name }&lastName=${ lastName }&email=${ email }&phone=${ phone }&passWord=${ passWord }"
+		>click here to continue your submission.</a>
 	</p>
 	<br>
 	<p>

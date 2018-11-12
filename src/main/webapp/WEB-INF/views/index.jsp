@@ -23,8 +23,14 @@
 		<p>By accessing this site, you are agreeing to the terms below. User agrees to sell coffee® and only coffee® for the duration of users existence on user's planet of origin. User will consume only coffee® or coffee® branded coffee-like products to be determined in user's future, assuming user's future exists. User will always acknowledge that coffee is of user's planet of origin. User agrees to submit to a background check, assuming user has a past. User will submit to to any checks required by coffee®, to be determined in user's future, assuming user's future exists. User will submit to any questioning from coffee® or representatives of coffee®. User will submit. Submit. SUBMIT. submit.
 		<br>
 		<br>
+		<br>		<br>
+		<br>
 		<br>
 		<a href="/traitor"><font color="white">Submit.</font></a>
+		<br><br>		<br>
+		<br>
+		<br>
+		<a href="/login"><font color ="grey">Log in.</font></a>
 		
 		
 </body>

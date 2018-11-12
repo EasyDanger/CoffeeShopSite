@@ -21,31 +21,45 @@ public class CoffeeController {
 	}
 
 	@RequestMapping("/verifyTraitor")
-	public ModelAndView verifyTraitor(@RequestParam("Name") String name, @RequestParam("firstName") String fName, @RequestParam("lastName") String lName,
-			@RequestParam("email") String email, @RequestParam("phone") String phone,
-			@RequestParam("passWord") String pWord, @RequestParam("passWord2") String pWord2,
-			@RequestParam("box") boolean box) throws IOException {
+	public ModelAndView verifyTraitor(@RequestParam("Name") String name, @RequestParam("firstName") String fName,
+			@RequestParam("lastName") String lName, @RequestParam("email") String email,
+			@RequestParam("phone") String phone, @RequestParam("passWord") String pWord,
+			@RequestParam("passWord2") String pWord2, @RequestParam("box") boolean box) throws IOException {
 		ModelAndView mv = new ModelAndView("verifyTraitor");
 		// Need to finish dealing with this box.
-		User user = new User(name, fName, lName, email, phone, pWord);
+		mv.addObject("Name", name);
+		mv.addObject("firstName", fName);
+		mv.addObject("lastName", lName);
+		mv.addObject("email", email);
+		mv.addObject("phone", phone);
+		mv.addObject("passWord", pWord);
 
-		mv.addObject("user", user);
-		
 		return mv;
 	}
 
 	@RequestMapping("/addTraitor")
-	public ModelAndView addTraitor(@RequestParam("user") User user) throws IOException {
+	public ModelAndView addTraitor(@RequestParam("firstName") String fName, @RequestParam("Name") String name,
+			@RequestParam("lastName") String lName, @RequestParam("email") String email,
+			@RequestParam("phone") String phone, @RequestParam("passWord") String pWord) throws IOException {
 		ModelAndView mv = new ModelAndView("addTraitor");
+		User user = new User(name, fName, lName, email, phone, pWord);
 		UserFile.writeApp(user);
 		mv.addObject("user", user);
-		String d = "";		return mv;
+		return mv;
 
 	}
 
+	@RequestMapping("/login")
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView("login");
+		
+		return mv;
+
+	}
+	
 	@RequestMapping("/menu")
 	public ModelAndView menu() {
 		return null;
-		
+
 	}
 }
