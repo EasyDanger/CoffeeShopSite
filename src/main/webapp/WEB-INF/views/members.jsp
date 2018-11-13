@@ -15,18 +15,18 @@
 	href="http://localhost:8080/styles.css"
 >
 <meta charset="ISO-8859-1">
-<title>This is the menu</title>
+<title>This is you, for Us</title>
 </head>
 <body>
-	<h1>coffee® Menu Items</h1>
+	<h1>coffee® Members</h1>
 	<main class="flex">
 	<div class="card1">
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Item</th>
-					<th>Description</th>
-					<th>Price</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Species</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -36,14 +36,14 @@
 				>
 					<tr>
 						<td>${item.name}</td>
-						<td>${item.description}</td>
-						<td>$${item.price}</td>
+						<td>${item.email}</td>
+						<td>Human</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-	<p><a href="/addItem/${ Name }">Add item to this menu.</a></p>
-	<p><a href="/ill/${ Name }">Return to user menu.</a></p>
+	
+	<p><a href="/ill/${ Name }">Return to menu.</a></p>
 	</div>
 	</main>
 </body>

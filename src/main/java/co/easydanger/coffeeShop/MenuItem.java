@@ -17,6 +17,12 @@ public class MenuItem implements Comparable<MenuItem> {
 		this.price = price;
 	}
 
+	public MenuItem(String item, Double price2, String desc) {
+		this.name = item;
+		this.price = price2;
+		this.description = desc; 
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -33,11 +39,11 @@ public class MenuItem implements Comparable<MenuItem> {
 		this.description = description;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

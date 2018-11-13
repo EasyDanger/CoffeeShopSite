@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -71,15 +73,15 @@ public class CoffeeController {
 		
 		for (User user: list) {
 			if (name.equals(user.getName()) && pWord.equals(user.getPword())) {
-				mv = new ModelAndView("redirect:/menu");
+				mv = new ModelAndView("redirect:/ill/"+ name);
 				System.out.println("hello");
 			}
 		}
 		return mv;
 		}
 	
-	@RequestMapping("/menu")
-	public ModelAndView menu() {
+	@RequestMapping("/menu/{Name}")
+	public ModelAndView menu(@PathVariable("Name") String name) {
 
 		List<MenuItem> list = new ArrayList<MenuItem>();
 		list = menuItemDao.findAll();
@@ -88,6 +90,42 @@ public class CoffeeController {
 		ModelAndView mv = new ModelAndView("menu");
 		mv.addObject("list", list);
 		return mv;
+	}
+	
+	@RequestMapping("/members/{Name}")
+	public ModelAndView membs(@PathVariable("Name") String name) {
 
+		List<User> list = new ArrayList<User>();
+		list = userDao.findAll();
+		System.out.println("hello");
+		System.out.println(list);
+		ModelAndView mv = new ModelAndView("members", "Name", name);
+		mv.addObject("list", list);
+		return mv;
+	}
+
+	@RequestMapping("/ill/{name}")
+	public ModelAndView ill(@PathVariable("name") String name) {
+		return new ModelAndView("illusionOfChoice", "Name", name);
+	}
+	
+	@RequestMapping("/addItem/{Name}")
+	public ModelAndView additem(@PathVariable("Name") String name) {
+		ModelAndView mv = new ModelAndView("addItem");
+		return mv;
+	}
+	
+	@PostMapping("/menuAdd/{Name}")
+	public ModelAndView menuAdd(@PathVariable("Name") String name, @RequestParam("itemName") String item, @RequestParam("Price") Double price, @RequestParam("Description") String desc) {
+		System.out.println(name + " " + item + " " + price + " " + desc);
+		MenuItem mi = new MenuItem(item, price, desc);
+		menuItemDao.create(mi);
+		List<MenuItem> list = new ArrayList<MenuItem>();
+		list = menuItemDao.findAll();
+		System.out.println("helloall");
+		System.out.println(list);
+		ModelAndView mv = new ModelAndView("menu");
+		mv.addObject("list", list);
+		return mv;
 	}
 }

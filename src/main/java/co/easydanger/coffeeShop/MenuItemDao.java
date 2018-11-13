@@ -15,7 +15,7 @@ public class MenuItemDao {
 	
 	public List<MenuItem> findAll() {
 	
-		return jdbcTemplate.query("SELECT * FROM menuitem", new BeanPropertyRowMapper<>(MenuItem.class));
+		return jdbcTemplate.query("SELECT * FROM menu_item", new BeanPropertyRowMapper<>(MenuItem.class));
 
 	}
 	public MenuItem findById(Long id) {
@@ -27,14 +27,14 @@ public class MenuItemDao {
 	}
 	
 	public void update(MenuItem item) {
-		String sql = "UPDATE menu_item SET name = ?, capacity = ?, available = ? WHERE id = ?";
+		String sql = "UPDATE menu_item SET name = ?, description = ?, price = ? WHERE id = ?";
 		// Use .update for SQL INSERT, UPDATE, and DELETE
 		// All the parameters after the first specify values to fill in the ?s in the SQL.
 		jdbcTemplate.update(sql, item.getName(), item.getDescription(), item.getPrice(), item.getId());
 	}
 	
 	public void create(MenuItem item) {
-		String sql = "INSERT INTO menu_item (name, capacity, available) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO menu_item (name, description, price) VALUES (?, ?, ?)";
 		jdbcTemplate.update(sql, item.getName(), item.getDescription(), item.getPrice());
 	}
 	
