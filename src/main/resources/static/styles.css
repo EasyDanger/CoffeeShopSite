@@ -106,6 +106,31 @@ header {
   border-color: #470000;
 }
 
+.card1 {
+  padding: 20px 40px 40px;
+  min-width: 500px;
+  text-align: justify;
+  background: #1392f0;
+  border-bottom: 4px solid #0872d0;
+  border-radius: 6px;
+  color: white;
+}
+.card1:hover {
+  border-color: #1089eb;
+}
+.card2 {
+  padding: 20px 40px 40px;
+  min-width: 500px;
+  text-align: justify;
+  background: #ebf915;
+  border-bottom: 4px solid #d6f410;
+  border-radius: 6px;
+  color: grey;
+}
+.card2:hover {
+  border-color: #d8f612;
+}
+
 ul.skills {
   padding: 0;
   text-align: center;
@@ -122,6 +147,13 @@ ul.skills {
 
 .skills li:nth-child(odd) {
   background: #a5a5a5;
+}
+
+#grey {
+	color:white;
+}
+#grey:hover {
+	color:grey;
 }
 
 footer {

@@ -1,6 +1,16 @@
 package co.easydanger.coffeeShop;
 
 public class User {
+	private Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	private String name = "It's";
 	private String fname = "Just";
 	private String lname = "one";
@@ -12,6 +22,7 @@ public class User {
 	}
 
 	public User(String name, String fname, String lname, String email, String phone, String pword) {
+	//	this.id = (long) 1;
 		this.name = name;
 		this.fname = fname;
 		this.lname = lname;
@@ -70,8 +81,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "firstName=" + fname  + "lastName=" + lname + "&email=" + email + "&phone=" + phone + "&Name=" + name  + "&passWord=" + pword;
-		
+		return "firstName=" + fname + "lastName=" + lname + "&email=" + email + "&phone=" + phone + "&Name=" + name
+				+ "&passWord=" + pword;
+
 	}
 
 }

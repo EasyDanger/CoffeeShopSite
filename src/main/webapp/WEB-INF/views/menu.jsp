@@ -1,12 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page
+	language="java"
+	contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"
+%>
+<%@ taglib
+	uri="http://java.sun.com/jsp/jstl/core"
+	prefix="c"
+%>
 <!DOCTYPE html>
 <html>
 <head>
+<link
+	rel="stylesheet"
+	href="styles.css"
+>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>This is the menu</title>
 </head>
 <body>
-
+	<h1>Menu Items</h1>
+	<main class="flex">
+	<div class="card1">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Description</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach
+					var="item"
+					items="${list}"
+				>
+					<tr>
+						<td>${item.name}</td>
+						<td>${item.description}</td>
+						<td>$${item.price}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+	</main>
 </body>
 </html>

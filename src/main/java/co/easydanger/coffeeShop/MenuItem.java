@@ -1,12 +1,21 @@
 package co.easydanger.coffeeShop;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-
 public class MenuItem implements Comparable<MenuItem> {
+	private Long id;
 	private String name;
 	private String description;
-	private double price;
+	private Double price;
+
+	public MenuItem() {
+	}
+	
+	public MenuItem(Long id, String name, String description, Double price) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+	}
 
 	public String getName() {
 		return name;
@@ -41,10 +50,18 @@ public class MenuItem implements Comparable<MenuItem> {
 		return name.equalsIgnoreCase(s);
 	}
 
-	@Override
-	public String toString() {
-		DecimalFormat df = new DecimalFormat("0.00");
-		df.setRoundingMode(RoundingMode.CEILING);
-		return String.format("$%-6s%-20s%", df.format(price), name, description);
+//	@Override
+//	public String toString() {
+//		DecimalFormat df = new DecimalFormat("0.00");
+//		df.setRoundingMode(RoundingMode.CEILING);
+//		return String.format("$%-6s%-20s%",  df.format(price), name, description);
+//	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
