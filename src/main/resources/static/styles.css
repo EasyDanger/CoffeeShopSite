@@ -14,7 +14,7 @@ body {
 /* Link Styles */
 a {
 	text-decoration: none;
-	color: #920000;
+	color: #d20000;
 }
 
 a:hover {
@@ -69,6 +69,36 @@ a:hover {
 	overflow: hidden;
 	outline: none;
 }
+.botton {
+    background-color: #d20000; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+	border-bottom: 4px solid #6c0000;
+	border-radius: 18px;
+	display: inline-block;
+    font-size: 16px;
+}
+.botton:hover {
+	border-color: #470000;
+}
+.botton1 {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+	background: #009200;
+	border-bottom: 4px solid #006c00;
+	border-radius: 18px;
+	display: inline-block;
+    font-size: 16px;
+}
+.botton1:hover {
+	border-color: #004700;
+}
 
 header {
 	text-align: center;
@@ -92,7 +122,7 @@ header {
 }
 
 .tag {
-	background-color: #920000;
+	background-color: #d20000;
 	color: white;
 	padding: 10px;
 	border-radius: 5px;
@@ -116,8 +146,9 @@ header {
 .card {
 	padding: 20px 40px 40px;
 	min-width: 500px;
+	max-width: 550px;
 	text-align: justify;
-	background: #920000;
+	background: #d20000;
 	border-bottom: 4px solid #6c0000;
 	border-radius: 6px;
 	color: white;
@@ -130,6 +161,7 @@ header {
 .card1 {
 	padding: 20px 40px 40px;
 	min-width: 500px;
+
 	text-align: justify;
 	background: #1392f0;
 	border-bottom: 4px solid #064ca3;
@@ -140,10 +172,26 @@ header {
 .card1:hover {
 	border-color: #0b64c6;
 }
+.botton2 {
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+	background: #1392f0;
+	border-bottom: 4px solid #064ca3;
+	border-radius: 18px;
+	display: inline-block;
+    font-size: 16px;
+}
+.botton2:hover {
+	border-color: #0b64c6;
+}
 
 .card2 {
 	padding: 20px 40px 40px;
 	min-width: 500px;
+	max-width: 550px;
 	text-align: justify;
 	background: #009200;
 	border-bottom: 4px solid #006c00;
@@ -203,31 +251,6 @@ footer ul li {
 	display: inline-block;
 }
 
-a.social {
-	display: inline-block;
-	text-indent: -9999px;
-	margin-left: 5px;
-	width: 30px;
-	height: 30px;
-	background-size: 30px 30px;
-}
-
-a.twitter {
-	background-image: url(pictures/twitter.png);
-}
-
-a.linkedin {
-	background-image: url(pictures/linkedin.png);
-}
-
-a.github {
-	background-image: url(pictures/github.png);
-}
-
-a.medium {
-	background-image: url(pictures/medium.png);
-}
-
 .clearfix {
 	clear: both;
 }
@@ -243,6 +266,10 @@ a.medium {
 		max-width: 1200px;
 		justify-content: space-around;
 		margin: 0 auto;
+	}
+	.flux {
+		display: flex;
+		justify-content: space-around;
 	}
 	header {
 		min-height: 450px;

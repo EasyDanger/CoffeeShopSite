@@ -45,9 +45,7 @@
       </c:if>
 																		
 						</td>
-						<td><a href="/member/toggle/${ Name }/update/${ item.name }" class="botton">Toggle Admin</a></td>
-						<td><a href="/member/delete/${ Name }/update/${ item.name }" class="botton">Delete</a></td>
-					</tr>
+						</tr>
 				</c:forEach>
 			</tbody>
 		</table>

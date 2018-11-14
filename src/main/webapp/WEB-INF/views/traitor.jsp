@@ -78,6 +78,7 @@
 					<input
 						name="Name"
 						required
+						maxlength="16"
 						placeholder="Human"
 						class="input"
 					/>

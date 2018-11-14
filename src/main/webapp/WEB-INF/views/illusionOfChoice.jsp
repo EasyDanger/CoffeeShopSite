@@ -21,21 +21,25 @@
 	<h3>Welcome, ${ Name }!</h3>
 	<h1>What would you like to do?</h1>
 	<main class="flex">
-	<button class="butt">
-		<div class="card">View/Edit your profile</div>
-	</button>
-	<a href="/menu/${ Name }"><button class="butt">
-		<div class="card2">View/Edit the menu</div>
-	</button></a>
-	</main>
-	<br>
-	<main class="flex">
-	<a href="/members/${ Name }"><button class="butt">
-		<div class="card1">View member list</div>
-	</button></a>
-	<a href="/"><button class="butt">
-		<div class="card">Logout</div>
-	</button></a>
+	<div class="card">
+		<main
+			class="flex"
+			align="center">
+		<div>
+		<button class="botton2">View/Edit your profile</button></div>
+		 <a href="/menu/${ Name }">
+			<button class="botton2">View/Edit the menu</button>
+		</a> </main>
+		<main
+			class="flex"
+			align="center"
+		> <a href="/members/${ Name }">
+			<button class="botton2">View member list</button>
+		</a> <a href="/">
+			<button class="botton2">Logout</button>
+		</a>
+		</main>
+	</div>
 	</main>
 
 </body>

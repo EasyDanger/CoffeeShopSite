@@ -1,8 +1,39 @@
 package co.easydanger.coffeeShop;
 
-public class User {
-	private Long id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="users")
+public class User {
+	
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	private String name = "It's";
+	private String fname = "Just";
+	private String lname = "one";
+	private String email = "more";
+	private String phone = "empty";
+	private String pword = "shell";
+	private boolean admin = false;
+
+	public User() {
+	}
+
+	public User(Long id, String name, String fname, String lname, String email, String phone, String pword) {
+		this.id = id;
+		this.name = name;
+		this.fname = fname;
+		this.lname = lname;
+		this.email = email;
+		this.phone = phone;
+		this.pword = pword;
+
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -10,25 +41,10 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	private String name = "It's";
-	private String fname = "Just";
-	private String lname = "one";
-	private String email = "more";
-	private String phone = "empty";
-	private String pword = "shell";
-
-	public User() {
-	}
-
-	public User(String name, String fname, String lname, String email, String phone, String pword) {
-	//	this.id = (long) 1;
-		this.name = name;
-		this.fname = fname;
-		this.lname = lname;
-		this.email = email;
-		this.phone = phone;
-		this.pword = pword;
+	public void giveAdmin(User current, User newAdmin) {
+		if(current.admin) {
+			newAdmin.admin = true;
+		}
 	}
 
 	public String getName() {
@@ -79,10 +95,23 @@ public class User {
 		this.pword = pword;
 	}
 
+	public boolean isAdmin() {
+		return admin;
+	}
+	
+	public void toggleAdmin() {
+		if (this.admin) {
+			this.admin = false;
+		}
+		else {
+			this.admin = true;
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "firstName=" + fname + "lastName=" + lname + "&email=" + email + "&phone=" + phone + "&Name=" + name
-				+ "&passWord=" + pword;
+				+ "&passWord=" + pword + admin;
 
 	}
 

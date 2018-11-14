@@ -15,15 +15,16 @@
 </head>
 <body>
 	<p>
-		<h1>What item would you like to add ... ${ Name }?</h1>
-		<br>
-		
-		<br>
-		
+	<h1>What item would you like to add ... ${ Name }?</h1>
+	<br>
+	<br>
 	</p>
 	<main class="flex">
 	<div class="card">
-		<form action="/menuAdd/${ Name }" method="post">
+		<form
+			action="/menuAdd/${ Name }"
+			method="post"
+		>
 			<p>
 				Name of item:
 				<span style="float: right;">
@@ -49,7 +50,8 @@
 			<P>
 				Price of item:
 				<span style="float: right;">
-					$<input
+					$
+					<input
 						name="Price"
 						required
 						type="number"
@@ -59,7 +61,7 @@
 					/>
 				</span>
 			</P>
-			
+
 			<br>
 			<br>
 			<div style="text-align: center">

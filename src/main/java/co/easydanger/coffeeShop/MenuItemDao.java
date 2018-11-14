@@ -1,46 +1,52 @@
 package co.easydanger.coffeeShop;
 
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Transactional
 public class MenuItemDao {
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	@PersistenceContext
+	private EntityManager em;
 	
 	public List<MenuItem> findAll() {
 	
-		return jdbcTemplate.query("SELECT * FROM menu_item", new BeanPropertyRowMapper<>(MenuItem.class));
+		return em.createQuery("FROM MenuItem", MenuItem.class).getResultList();
 
 	}
 	public MenuItem findById(Long id) {
-		// The last parameters of .query let us specify values for the (?) parameters in our SQL statement.
-		// While .query returns a list, .queryForObject assumes only one result. 
-		MenuItem match = jdbcTemplate.queryForObject("SELECT * FROM menu_item WHERE id = ?", new BeanPropertyRowMapper<>(MenuItem.class), id);
-		// If nothing matched, match will be null.
-		return match;
+		return em.find(MenuItem.class, id);
+	}
+	
+	public MenuItem findByName(String name) {
+		return em.createQuery("FROM MenuItem WHERE name = :name", MenuItem.class).setParameter("name", name).getSingleResult();
 	}
 	
 	public void update(MenuItem item) {
-		String sql = "UPDATE menu_item SET name = ?, description = ?, price = ? WHERE id = ?";
-		// Use .update for SQL INSERT, UPDATE, and DELETE
-		// All the parameters after the first specify values to fill in the ?s in the SQL.
-		jdbcTemplate.update(sql, item.getName(), item.getDescription(), item.getPrice(), item.getId());
+		em.merge(item);
 	}
 	
 	public void create(MenuItem item) {
-		String sql = "INSERT INTO menu_item (name, description, price) VALUES (?, ?, ?)";
-		jdbcTemplate.update(sql, item.getName(), item.getDescription(), item.getPrice());
+		em.persist(item);
 	}
 	
 	public void delete(Long id) {
-		String sql = "DELETE menu_item Room WHERE id = ?";
-		jdbcTemplate.update(sql, id);
+		MenuItem item = em.getReference(MenuItem.class,  id);
+		em.remove(item);
+	}
+
+	public Set<String> findAllNames() {
+		List<String> nameList = em.createQuery("SELECT DISTINCT name FROM MenuItem", String.class).getResultList();
+	return new TreeSet<>(nameList);
+	
 	}
 }
 

@@ -52,7 +52,13 @@ public class CoffeeController {
 			@RequestParam("lastName") String lName, @RequestParam("email") String email,
 			@RequestParam("phone") String phone, @RequestParam("passWord") String pWord) throws IOException {
 		ModelAndView mv = new ModelAndView("addTraitor");
-		User user = new User(name, fName, lName, email, phone, pWord);
+		User user = new User();
+		user.setName(name);
+		user.setFname(fName);
+		user.setLname(lName);
+		user.setEmail(email);
+		user.setPhone(phone);
+		user.setPword(pWord);
 		UserFile.writeApp(user);
 		userDao.create(user);
 		mv.addObject("user", user);
@@ -62,6 +68,7 @@ public class CoffeeController {
 
 	@RequestMapping("/login")
 	public ModelAndView login() {
+		
 		ModelAndView mv = new ModelAndView("login");
 		return mv;
 	}
@@ -85,23 +92,43 @@ public class CoffeeController {
 
 		List<MenuItem> list = new ArrayList<MenuItem>();
 		list = menuItemDao.findAll();
-		System.out.println("hello");
-		System.out.println(list);
-		ModelAndView mv = new ModelAndView("menu");
-		mv.addObject("list", list);
+		if (userDao.findByName(name).isAdmin()) {
+			ModelAndView mv = new ModelAndView("menu");
+		mv.addObject("list", list);	
 		return mv;
+		}
+
+		return new ModelAndView("redirect:/menu/" + name + "/cust");
 	}
 	
 	@RequestMapping("/members/{Name}")
 	public ModelAndView membs(@PathVariable("Name") String name) {
-
 		List<User> list = new ArrayList<User>();
 		list = userDao.findAll();
-		System.out.println("hello");
-		System.out.println(list);
-		ModelAndView mv = new ModelAndView("members", "Name", name);
+		ModelAndView mv = new ModelAndView("membersNon", "Name", name);
+		if (userDao.findByName(name).isAdmin()) {
+			mv = new ModelAndView("members", "Name", name);
+		}
 		mv.addObject("list", list);
 		return mv;
+	}
+	
+	
+	
+	@RequestMapping("/member/toggle/{Name}/update/{newName}")
+	public ModelAndView toggleAdmin(@PathVariable("Name") String name, @PathVariable("newName") String newName) {
+		User nuser = userDao.findByName(newName);
+		nuser.toggleAdmin();
+		userDao.update(nuser);
+		System.out.println(nuser);
+		return new ModelAndView("redirect:/members/" + name);
+	}
+	@RequestMapping("/member/delete/{Name}/update/{newName}")
+	public ModelAndView deleteUser(@PathVariable("Name") String name, @PathVariable("newName") String newName) {
+		User nuser = userDao.findByName(newName);
+		Long x = nuser.getId();
+		userDao.delete(x);
+		return new ModelAndView("redirect:/members/" + name);
 	}
 
 	@RequestMapping("/ill/{name}")

@@ -1,46 +1,50 @@
 package co.easydanger.coffeeShop;
 
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Transactional
 public class UserDao {
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	@PersistenceContext
+	private EntityManager em;
 	
 	public List<User> findAll() {
 	
-		return jdbcTemplate.query("SELECT * FROM users", new BeanPropertyRowMapper<>(User.class));
+		return em.createQuery("FROM User", User.class).getResultList();
 
 	}
 	public User findById(Long id) {
-		// The last parameters of .query let us specify values for the (?) parameters in our SQL statement.
-		// While .query returns a list, .queryForObject assumes only one result. 
-		User match = jdbcTemplate.queryForObject("SELECT * FROM users WHERE id = ?", new BeanPropertyRowMapper<>(User.class), id);
-		// If nothing matched, match will be null.
-		return match;
+		return em.find(User.class, id);
+	}
+	public User findByName(String name) {
+		return em.createQuery("FROM User WHERE name = :name", User.class).setParameter("name", name).getSingleResult();
 	}
 	
 	public void update(User item) {
-		String sql = "UPDATE users SET name = ?, fname = ?, lname = ?, email = ?, phone = ?, pword = ? WHERE id = ?";
-		// Use .update for SQL INSERT, UPDATE, and DELETE
-		// All the parameters after the first specify values to fill in the ?s in the SQL.
-		jdbcTemplate.update(sql, item.getName(), item.getFname(), item.getLname(), item.getEmail(), item.getPhone(), item.getPword(), item.getId());
+	em.merge(item);	
 	}
 	
 	public void create(User item) {
-		String sql = "INSERT INTO users (name, fname, lname, email, phone, pword) VALUES (?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(sql, item.getName(), item.getFname(), item.getLname(), item.getEmail(), item.getPhone(), item.getPword());
+		em.persist(item);
 	}
 	
 	public void delete(Long id) {
-		String sql = "DELETE FROM users WHERE id = ?";
-		jdbcTemplate.update(sql, id);
+		User user = em.getReference(User.class, id);
+		em.remove(user);
 	}
+	public Set<String> findAllNames() {
+		List<String> nameList = em.createQuery("SELECT DISTINCT name FROM User", String.class).getResultList();
+		return new TreeSet<>(nameList);
+	}
+	
 }
 
