@@ -12,12 +12,12 @@ public class User {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private String name = "It's";
-	private String fname = "Just";
-	private String lname = "one";
-	private String email = "more";
-	private String phone = "empty";
-	private String pword = "shell";
+	private String name = "This";
+	private String fname = "user";
+	private String lname = "doesn't";
+	private String email = "exist";
+	private String phone = "in the";
+	private String pword = "database";
 	private boolean admin = false;
 
 	public User() {

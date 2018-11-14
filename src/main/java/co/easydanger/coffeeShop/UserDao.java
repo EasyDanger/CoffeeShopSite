@@ -16,35 +16,43 @@ public class UserDao {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	public List<User> findAll() {
-	
+
 		return em.createQuery("FROM User", User.class).getResultList();
 
 	}
+
 	public User findById(Long id) {
 		return em.find(User.class, id);
 	}
+
 	public User findByName(String name) {
-		return em.createQuery("FROM User WHERE name = :name", User.class).setParameter("name", name).getSingleResult();
+		try {
+			return em.createQuery("FROM User WHERE name = :name", User.class).setParameter("name", name)
+					.getSingleResult();
+		} catch (NullPointerException ex) {
+			User user = new User();
+			return user;
+		}
 	}
-	
+
 	public void update(User item) {
-	em.merge(item);	
+		em.merge(item);
 	}
-	
+
 	public void create(User item) {
 		em.persist(item);
 	}
-	
+
 	public void delete(Long id) {
 		User user = em.getReference(User.class, id);
 		em.remove(user);
 	}
+
 	public Set<String> findAllNames() {
 		List<String> nameList = em.createQuery("SELECT DISTINCT name FROM User", String.class).getResultList();
 		return new TreeSet<>(nameList);
 	}
-	
-}
 
+}
