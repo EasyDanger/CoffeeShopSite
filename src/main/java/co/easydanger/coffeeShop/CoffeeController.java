@@ -97,10 +97,17 @@ public class CoffeeController {
 		mv.addObject("list", list);	
 		return mv;
 		}
-
 		return new ModelAndView("redirect:/menu/" + name + "/cust");
 	}
 	
+	@RequestMapping("/menu/delete/{Name}/update/{OldItem}")
+	public ModelAndView deleteMenu(@PathVariable("Name") String name, @PathVariable("OldItem") String oldItem) {
+		MenuItem oItem = menuItemDao.findByName(oldItem);
+		Long x = oItem.getId();
+		menuItemDao.delete(x);
+		return new ModelAndView("redirect:/menu/" + name);
+	}
+
 	@RequestMapping("/members/{Name}")
 	public ModelAndView membs(@PathVariable("Name") String name) {
 		List<User> list = new ArrayList<User>();

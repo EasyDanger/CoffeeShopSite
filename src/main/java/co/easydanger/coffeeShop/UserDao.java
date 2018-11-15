@@ -18,9 +18,7 @@ public class UserDao {
 	private EntityManager em;
 
 	public List<User> findAll() {
-
 		return em.createQuery("FROM User", User.class).getResultList();
-
 	}
 
 	public User findById(Long id) {

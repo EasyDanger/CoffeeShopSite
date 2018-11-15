@@ -27,6 +27,25 @@ public class CustomerPageController {
 		return mv;
 	}
 	
+	@RequestMapping("/login/customer")
+	public ModelAndView customer() {
+		return new ModelAndView("cLogin");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/menu/{Name}/cust")
 	public ModelAndView menuNotAdmin(@PathVariable("Name") String name) {
 

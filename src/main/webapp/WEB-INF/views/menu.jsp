@@ -38,6 +38,7 @@
 						<td>${item.name}</td>
 						<td>${item.description}</td>
 						<td>$${item.price}</td>
+						<td><a href="/menu/delete/${ Name }/update/${ item.name }" class="botton">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

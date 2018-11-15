@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,8 @@ public class MenuItem implements Comparable<MenuItem> {
 	private String name;
 	private String description;
 	private Double price;
+	@ManyToOne
+	private Cart cart;
 
 	public MenuItem() {
 	}
