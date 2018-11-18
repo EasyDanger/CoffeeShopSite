@@ -18,6 +18,8 @@
 <title>The Illusion of Choice</title>
 </head>
 <body>
+	<%@include file="partials/header.jsp"%>
+	<br>
 	<h3>Welcome, ${ Name }!</h3>
 	<h1>What would you like to do?</h1>
 	<main class="flex">

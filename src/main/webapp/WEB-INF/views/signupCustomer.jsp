@@ -14,8 +14,11 @@
 <title>We Need Your DATA.</title>
 </head>
 <body>
+	<%@include file="partials/header.jsp"%>
+	<br>
 	<p>
-		Please register to begin shopping at coffee®.
+		To continue your submission, please complete the following form
+		entering only accurate data.
 		<br>
 		We will know if you enter false data.
 		<br>
@@ -25,7 +28,8 @@
 	</p>
 	<main class="flex">
 	<div class="card">
-		<form action="/verifyCustomer">
+		<form action="/signupCustomer" method="post">
+			<p class="message">${ message }</p>
 			<p>
 				First Name:
 				<span style="float: right;">
@@ -55,7 +59,7 @@
 						name="email"
 						required
 						placeholder="everythingisfine@coffee®.com"
-						pattern="[a-zA-Z\\d]+@[a-zA-Z\\d]{5,10}.[a-zA-Z\\d]{2,3}"
+						pattern="[a-zA-Z\\d]+@[a-zA-Z\\d]{4,10}.[a-zA-Z\\d]{2,3}"
 						class="input"
 					/>
 				</span>
@@ -64,7 +68,7 @@
 				Credit Card Number:
 				<span style="float: right;">
 					<input
-						name="CardNum"
+						name="cardNum"
 						placeholder="#### #### #### ####"
 						pattern="\d{4} \d{4} \d{4} \d{4}"
 						class="input"

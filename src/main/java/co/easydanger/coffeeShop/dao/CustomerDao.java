@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -27,12 +28,24 @@ public class CustomerDao {
 		return em.find(Customer.class, id);
 	}
 	
+	public Customer findByGithubId(Long githubId) {
+		try {
+			return em.createQuery("FROM Customer WHERE githubId = :githubId", Customer.class)
+					.setParameter("githubId", githubId)
+					.getSingleResult();
+		} catch (NoResultException ex) {
+			// No user with that githubId found.
+			return null;
+		}
+	}
+	
 	public Customer findByName(String name) {
 		try {
 			return em.createQuery("FROM Customer WHERE name = :name", Customer.class).setParameter("name", name)
 					.getSingleResult();
 		} catch (NullPointerException ex) {
 			Customer cust = new Customer();
+			cust.setName("Nope");
 			return cust;
 		}
 	}

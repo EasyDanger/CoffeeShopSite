@@ -18,6 +18,8 @@
 <title>This is the menu</title>
 </head>
 <body>
+	<%@include file="partials/header.jsp"%>
+	<br>
 	<h1>coffee® Menu Items</h1>
 	<main class="flex">
 	<div class="card1">

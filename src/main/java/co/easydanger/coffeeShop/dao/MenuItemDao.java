@@ -1,4 +1,4 @@
-package co.easydanger.coffeeShop;
+package co.easydanger.coffeeShop.dao;
 
 import java.util.List;
 import java.util.Set;
@@ -10,6 +10,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import co.easydanger.coffeeShop.entity.MenuItem;
+
 @Repository
 @Transactional
 public class MenuItemDao {
@@ -18,7 +20,6 @@ public class MenuItemDao {
 	private EntityManager em;
 	
 	public List<MenuItem> findAll() {
-	
 		return em.createQuery("FROM MenuItem", MenuItem.class).getResultList();
 
 	}

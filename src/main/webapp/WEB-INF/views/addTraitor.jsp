@@ -12,6 +12,8 @@
 <title>submitted</title>
 </head>
 <body>
+	<%@include file="partials/header.jsp"%>
+	<br>
 <p> Your submission has been accepted, ${ user.name }</p>
 <h3>Welcome to coffee®</h3>
 <h2>Welcome to the experience</h2>

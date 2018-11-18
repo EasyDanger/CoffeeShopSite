@@ -18,6 +18,8 @@
 <title>This is you, for Us</title>
 </head>
 <body>
+	<%@include file="partials/header.jsp"%>
+	<br>
 	<h1>coffee® Members</h1>
 	<main class="flex">
 	<div class="card1">

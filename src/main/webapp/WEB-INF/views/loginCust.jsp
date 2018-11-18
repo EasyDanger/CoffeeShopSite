@@ -18,17 +18,15 @@
 	<%@include file="partials/header.jsp"%>
 	<br>
 <h1> Log in</h1>
-
+	<p class="message">${ message }</p>
 	<main class="flex">
 	<div class="card2">
-		<form action="/login2">
-		<p>Please check your User Name and Password.</p>
-		<p> Try again.</p>
+		<form action="/loginCustomer" method="post">
 			<p>
 				User Name:
 				<span style="float: right;">
 					<input
-						name="userName"
+						name="Name"
 						required
 						placeholder="Human"
 						class="input"
@@ -50,15 +48,13 @@
 					/>
 				</span>
 			</P>
+					<a href="https://github.com/login/oauth/authorize?client_id=e82b2c1e403ce819aeed">Or sign in with GitHub</a>
 			
 			<br>
 			<br>
 			<div style="text-align: center">
 				<button>Login.</button>
 			</div>
-			<br><br>
-			<p><a href="/traitor" id="grey">Register.</a>
-			
 		</form>
 
 </body>

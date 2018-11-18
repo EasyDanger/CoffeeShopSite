@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import co.easydanger.coffeeShop.dao.MenuItemDao;
+import co.easydanger.coffeeShop.dao.UserDao;
+import co.easydanger.coffeeShop.entity.MenuItem;
+import co.easydanger.coffeeShop.entity.User;
 
 @Controller
 public class CoffeeController {
@@ -21,7 +29,7 @@ public class CoffeeController {
 	MenuItemDao menuItemDao;
 
 	@RequestMapping("/")
-	public ModelAndView index() {
+	public ModelAndView index(HttpSession session, RedirectAttributes redir) throws IOException {
 		return new ModelAndView("index");
 	}
 
@@ -119,8 +127,6 @@ public class CoffeeController {
 		mv.addObject("list", list);
 		return mv;
 	}
-	
-	
 	
 	@RequestMapping("/member/toggle/{Name}/update/{newName}")
 	public ModelAndView toggleAdmin(@PathVariable("Name") String name, @PathVariable("newName") String newName) {

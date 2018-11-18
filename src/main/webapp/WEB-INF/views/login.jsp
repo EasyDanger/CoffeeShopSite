@@ -15,6 +15,8 @@
 <title>Login Page</title>
 </head>
 <body>
+	<%@include file="partials/header.jsp"%>
+	<br>
 <h1> Log in</h1>
 
 	<main class="flex">

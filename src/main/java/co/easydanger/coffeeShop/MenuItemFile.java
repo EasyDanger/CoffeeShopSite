@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import co.easydanger.coffeeShop.entity.Coffee;
+import co.easydanger.coffeeShop.entity.MenuItem;
+
 //methods to deal with writing to and reading from the text file.
 public class MenuItemFile {
 

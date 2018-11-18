@@ -1,7 +1,7 @@
 /**
  * 
  */
-package co.easydanger.coffeeShop;
+package co.easydanger.coffeeShop.entity;
 
 /**
  * @author EasyDanger

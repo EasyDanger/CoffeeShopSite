@@ -14,6 +14,7 @@
 <title>Verify</title>
 </head>
 <body>
+	<%@include file="partials/header.jsp"%><br>
 	<h1>Hello, ${ Name }</h1>
 	<h2>Please verify your submission details below.</h2>
 	<p>First Name: ${ firstName }</p>

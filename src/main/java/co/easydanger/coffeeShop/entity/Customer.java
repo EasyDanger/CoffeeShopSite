@@ -4,9 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import co.easydanger.coffeeShop.Cart;
 
 @Entity
 @Table(name="customer")
@@ -14,13 +13,15 @@ public class Customer {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private String name = "This";
-	private String fname = "customer";
-	private String lname = "doesn't";
-	private String email = "exist";
-	private String pword = "in the";
-	private String cardNum = "database";
+	private String name = "";
+	private String firstName = "";
+	private String lastName = "";
+	private String email = "";
+	private String pWord = "";
+	private String cardNum = "";
+	@OneToOne(mappedBy = "cust")
 	private Cart cart;
+	private Long githubId;
 	
 	public Customer() {}
 	
@@ -29,10 +30,10 @@ public class Customer {
 		super();
 		this.id = id;
 		this.name = name;
-		this.fname = fname;
-		this.lname = lname;
+		this.firstName = fname;
+		this.lastName = lname;
 		this.email = email;
-		this.pword = pword;
+		this.pWord = pword;
 		this.cardNum = cardNum;
 		this.cart = cart;
 	}
@@ -54,19 +55,19 @@ public class Customer {
 	}
 
 	public String getFname() {
-		return fname;
+		return firstName;
 	}
 
 	public void setFname(String fname) {
-		this.fname = fname;
+		this.firstName = fname;
 	}
 
 	public String getLname() {
-		return lname;
+		return lastName;
 	}
 
 	public void setLname(String lname) {
-		this.lname = lname;
+		this.lastName = lname;
 	}
 
 	public String getEmail() {
@@ -78,11 +79,11 @@ public class Customer {
 	}
 
 	public String getPword() {
-		return pword;
+		return pWord;
 	}
 
 	public void setPword(String pword) {
-		this.pword = pword;
+		this.pWord = pword;
 	}
 
 	public String getCardNum() {
@@ -99,6 +100,20 @@ public class Customer {
 
 	public void setCart(Cart cart) {
 		this.cart = cart;
+	}
+
+	public Long getGithubId() {
+		return githubId;
+	}
+
+	public void setGithubId(Long githubId) {
+		this.githubId = githubId;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", email=" + email + ", pWord=" + pWord + ", cardNum=" + cardNum + ", cart=" + cart + "]";
 	}
 	
 

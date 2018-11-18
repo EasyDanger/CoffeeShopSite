@@ -1,4 +1,4 @@
-package co.easydanger.coffeeShop;
+package co.easydanger.coffeeShop.dao;
 
 import java.util.List;
 import java.util.Set;
@@ -9,6 +9,8 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
+
+import co.easydanger.coffeeShop.entity.User;
 
 @Repository
 @Transactional

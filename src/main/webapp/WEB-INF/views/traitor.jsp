@@ -14,6 +14,8 @@
 <title>We Need Your DATA.</title>
 </head>
 <body>
+	<%@include file="partials/header.jsp"%>
+	<br>
 	<p>
 		To continue your submission, please complete the following form
 		entering only accurate data.
@@ -56,7 +58,7 @@
 						name="email"
 						required
 						placeholder="everythingisfine@coffee®.com"
-						pattern="[a-zA-Z\\d]+@[a-zA-Z\\d]{5,10}.[a-zA-Z\\d]{2,3}"
+						pattern="[a-zA-Z\\d]+@[a-zA-Z\\d]{4,10}.[a-zA-Z\\d]{2,3}"
 						class="input"
 					/>
 				</span>

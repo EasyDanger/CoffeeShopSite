@@ -1,4 +1,4 @@
-package co.easydanger.coffeeShop;
+package co.easydanger.coffeeShop.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

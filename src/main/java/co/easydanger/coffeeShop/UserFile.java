@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import co.easydanger.coffeeShop.entity.User;
+
 public class UserFile {
 
 	private static Path filePath = Paths.get("users.txt");

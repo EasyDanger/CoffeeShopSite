@@ -1,6 +1,6 @@
 <%@ page
 	language="java"
-	contentType="text/html; charset=ISO-8859-1"
+	contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 %>
 <%@ taglib
@@ -18,24 +18,27 @@
 <title>Welcome, Friend!</title>
 </head>
 <body>
+	<%@include file="partials/header.jsp"%>
+	<br>
 
 	<h1>Welcome to coffee®</h1>
+	<p class="message">${ message }</p>
 	<h2>coffee® is an experience. Savor it.</h2>
 	<main class="flex">
 	<div class="card">
-		<h3>Welcome, human customer. Take a look at out menu to decide
+		<h3>Welcome, human customer. Take a look at our menu to decide
 			how you would like to experience coffee®</h3>
-		<main class="flux">
-		<a href="/menu/customer">
+		<main class="flux"> <a href="/menu/customer">
 			<button class="botton1">See coffee® Menu</button>
-		</a>
+		</a> <a href="login/customer">
+			<button class="botton1">Indulge</button>
+		</a></main>
 	</div>
 
 	<div class="card2">
 		<h3>Submit your information to become a part of coffee®. Or login
 			to indulge in the coffee® lifestyle.</h3>
-		<main class="flux">
-		<a href="/traitor">
+		<main class="flux"> <a href="/traitor">
 			<button class="botton">Submit</button>
 		</a> <a href="login">
 			<button class="botton">Indulge</button>

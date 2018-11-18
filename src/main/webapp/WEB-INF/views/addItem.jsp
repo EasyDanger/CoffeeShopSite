@@ -14,6 +14,8 @@
 <title>We Need Your DATA.</title>
 </head>
 <body>
+	<%@include file="partials/header.jsp"%>
+	<br>
 	<p>
 	<h1>What item would you like to add ... ${ Name }?</h1>
 	<br>
