@@ -15,7 +15,7 @@
 		<li>
 			<c:choose>
 				<c:when test="${ not empty Customer }">
-			Welcome, ${ Customer.name }
+			Welcome, <a href="/fixProfile">${ Customer.name }</a>
 						<li>
 						<a href="/showCart">Cart</a>
 					</li>

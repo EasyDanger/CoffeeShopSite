@@ -46,7 +46,7 @@ public class AuthControllerCust {
 			mav.addObject("message", "We're sorry. That combination has not been prepped for processing.");
 			return mav;
 		}
-		
+
 		List<Cart> carts = cartDao.findByCust(cust.getId());
 		// On successful login, add the user to the session.
 		session.setAttribute("Customer", cust);
@@ -79,7 +79,7 @@ public class AuthControllerCust {
 			@RequestParam("email") String email, @RequestParam("cardNum") String cardNum,
 			@RequestParam("Name") String name, @RequestParam("passWord") String pWord, HttpSession session,
 			RedirectAttributes redir) {
-		
+
 		Customer cust = new Customer();
 		cust.setName(name);
 		cust.setFname(firstName);
@@ -128,10 +128,10 @@ public class AuthControllerCust {
 		cust.setEmail(email);
 		cust.setCardNum(cardNum);
 		cust.setPword(pWord);
-		
+
 		custDao.create(cust);
 		List<Cart> carts = cartDao.findByCust(cust.getId());
-		
+
 		// On successful sign-up, add the user to the session.
 		session.setAttribute("Customer", cust);
 		session.setAttribute("Cart", carts);
@@ -167,6 +167,44 @@ public class AuthControllerCust {
 		session.setAttribute("githubAccessToken", accessToken);
 
 		return new ModelAndView("redirect:/");
+	}
+
+	@RequestMapping("/fixProfile")
+	public ModelAndView profile(HttpSession session, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView("fixProfile");
+		return mv;
+	}
+
+	@PostMapping("/fixProfile")
+	public ModelAndView profile2(@RequestParam("firstName") String fName, @RequestParam("Name") String name,
+			@RequestParam("lastName") String lName, @RequestParam("email") String email,
+			@RequestParam("cardNum") String cardNum, @RequestParam("passWord") String pWord,
+			@RequestParam(value = "newWord", required = false) String newWord, HttpSession session,
+			RedirectAttributes redir) {
+;
+		Customer cust = (Customer) session.getAttribute("Customer");
+		if (pWord.equals(cust.getpWord()) && !newWord.equals("")) {
+			cust.setName(name);
+			cust.setFname(fName);
+			cust.setLname(lName);
+			cust.setEmail(email);
+			cust.setCardNum(cardNum);
+			cust.setPword(newWord);	
+			redir.addFlashAttribute("message", "Thank you for updating all of your precious into.");
+
+		} else if (pWord.equals(cust.getpWord())) {
+			cust.setName(name);
+			cust.setFname(fName);
+			cust.setLname(lName);
+			cust.setEmail(email);
+			cust.setCardNum(cardNum);
+			redir.addFlashAttribute("message", "Thank you for updating your info.");
+		} else {
+			redir.addFlashAttribute("message", "Check your password.");
+		}
+		custDao.update(cust);
+		session.setAttribute("Customer", cust);
+		return new ModelAndView("redirect:/fixProfile");
 	}
 
 }

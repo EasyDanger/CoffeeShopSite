@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib
+<%@ page
+	language="java"
+	contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
+%>
+<%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core"
 	prefix="c"
 %>
@@ -17,11 +20,14 @@
 <body>
 	<%@include file="partials/header.jsp"%>
 	<br>
-<h1> Log in</h1>
+	<h1>Log in</h1>
 	<p class="message">${ message }</p>
 	<main class="flex">
 	<div class="card2">
-		<form action="/loginCustomer" method="post">
+		<form
+			action="/loginCustomer"
+			method="post"
+		>
 			<p>
 				User Name:
 				<span style="float: right;">
@@ -33,7 +39,7 @@
 					/>
 				</span>
 			</p>
-					<P>
+			<P>
 				Password:
 				<span style="float: right;">
 					<input
@@ -48,14 +54,16 @@
 					/>
 				</span>
 			</P>
-					<a href="https://github.com/login/oauth/authorize?client_id=e82b2c1e403ce819aeed">Or sign in with GitHub</a>
-			
 			<br>
 			<br>
 			<div style="text-align: center">
-				<button>Login.</button>
+				<button class="botton2">Login.</button>
 			</div>
 		</form>
-
+					<div style="text-align: center"><a
+				href="https://github.com/login/oauth/authorize?client_id=e82b2c1e403ce819aeed"
+			>
+				<button class="botton2">Or sign in with GutHub</button>
+			</a></div>
 </body>
 </html>

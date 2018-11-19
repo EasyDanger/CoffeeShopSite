@@ -3,6 +3,10 @@
 	contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 %>
+<%@ taglib
+	uri="http://java.sun.com/jsp/jstl/core"
+	prefix="c"
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,18 +21,21 @@
 	<%@include file="partials/header.jsp"%>
 	<br>
 	<p>
-		To continue your submission, please complete the following form
-		entering only accurate data.
+		We told you we'd know.
 		<br>
-		We will know if you enter false data.
+		Do not make this mistake again.
 		<br>
 		<br>
+		
 		<br>
 		Your data is safe with coffee®
 	</p>
 	<main class="flex">
 	<div class="card">
-		<form action="/signupCustomer" method="post">
+		<form
+			action="/fixProfile"
+			method="post"
+		>
 			<p class="message">${ message }</p>
 			<p>
 				First Name:
@@ -36,6 +43,7 @@
 					<input
 						name="firstName"
 						required
+						value=${ Customer.firstName }
 						placeholder="Human"
 						class="input"
 					/>
@@ -47,6 +55,7 @@
 					<input
 						name="lastName"
 						required
+						value=${ Customer.lastName }
 						placeholder="Name"
 						class="input"
 					/>
@@ -58,6 +67,7 @@
 					<input
 						name="email"
 						required
+						value=${ Customer.email }						
 						placeholder="everythingisfine@coffee®.com"
 						pattern="[a-zA-Z\\d]+@[a-zA-Z\\d]{4,10}.[a-zA-Z\\d]{2,3}"
 						class="input"
@@ -69,6 +79,7 @@
 				<span style="float: right;">
 					<input
 						name="cardNum"
+						value=${ Customer.cardNum }						
 						placeholder="#### #### #### ####"
 						pattern="\d{4} \d{4} \d{4} \d{4}"
 						class="input"
@@ -81,6 +92,7 @@
 					<input
 						name="Name"
 						required
+						value=${ Customer.name }
 						maxlength="16"
 						placeholder="Human"
 						class="input"
@@ -88,47 +100,32 @@
 				</span>
 			</p>
 			<P>
-				Password:
+				Please Re-enter Password:
 				<span style="float: right;">
 					<input
 						id="passWord"
 						name="passWord"
 						type="password"
 						pattern="^\S{6,}$"
-						onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : '')"
+						placeholder="Enter your password"
 						required
 						class="input"
-						placeholder="a-Z,0-9,!@#$%^&*"
 					/>
 				</span>
 			</P>
 			<P>
-				Please Re-enter Password:
+				Enter new password here to change:
 				<span style="float: right;">
 					<input
-						id="passWord2"
-						name="passWord2"
+						id="passWord"
+						name="newWord"
 						type="password"
 						pattern="^\S{6,}$"
-						onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');"
-						placeholder="Enter same password"
-						required
+						placeholder="New Password"
 						class="input"
 					/>
 				</span>
 			</P>
-			<p>
-				<input
-					type="checkbox"
-					name="box"
-					value="true"
-					required
-				>
-				<span style="float: right;">
-					* I agree to all terms of submission.
-					<br>
-				</span>
-			</p>
 			<br>
 			<br>
 			<div style="text-align: center">
