@@ -70,12 +70,12 @@ a:hover {
 }
 
 .botton {
-	background-color: #d20000; /* Green */
 	border: none;
 	color: white;
-	padding: 15px 32px;
+	padding: 15px 15px;
 	text-align: center;
 	text-decoration: none;
+	background: #d20000;
 	border-bottom: 4px solid #6c0000;
 	border-radius: 18px;
 	display: inline-block;
@@ -89,7 +89,7 @@ a:hover {
 .botton1 {
 	border: none;
 	color: white;
-	padding: 15px 32px;
+	padding: 15px 15px;
 	text-align: center;
 	text-decoration: none;
 	background: #009200;
@@ -101,6 +101,23 @@ a:hover {
 
 .botton1:hover {
 	border-color: #004700;
+}
+
+.botton2 {
+	border: none;
+	color: white;
+	padding: 15px 15px;
+	text-align: center;
+	text-decoration: none;
+	background: #1392f0;
+	border-bottom: 4px solid #064ca3;
+	border-radius: 18px;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.botton2:hover {
+	border-color: #0b64c6;
 }
 
 header {
@@ -178,23 +195,6 @@ thead {
 }
 
 .card1:hover {
-	border-color: #0b64c6;
-}
-
-.botton2 {
-	border: none;
-	color: white;
-	padding: 15px 15px;
-	text-align: center;
-	text-decoration: none;
-	background: #1392f0;
-	border-bottom: 4px solid #064ca3;
-	border-radius: 18px;
-	display: inline-block;
-	font-size: 16px;
-}
-
-.botton2:hover {
 	border-color: #0b64c6;
 }
 

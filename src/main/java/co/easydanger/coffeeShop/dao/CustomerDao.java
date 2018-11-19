@@ -47,6 +47,9 @@ public class CustomerDao {
 			Customer cust = new Customer();
 			cust.setName("Nope");
 			return cust;
+		} catch (NoResultException ex) {
+			// No user with that githubId found.
+			return null;
 		}
 	}
 	

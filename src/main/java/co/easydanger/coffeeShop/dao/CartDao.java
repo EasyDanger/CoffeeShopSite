@@ -31,6 +31,9 @@ public class CartDao {
 	public Cart findByCust(Customer cust) {
 		return em.createQuery("FROM Cart WHERE cust = :cust", Cart.class).setParameter("cust", cust).getSingleResult();
 	}
+	public List<Cart> findByCust(long cust) {
+		return em.createQuery("FROM Cart WHERE customer_id = :cust", Cart.class).setParameter("cust", cust).getResultList();
+	}
 	
 	public void addToCart() {
 		
@@ -44,7 +47,8 @@ public class CartDao {
 		em.persist(item);
 	}
 	
-	public void delete(Long id) {
+	public void delete(Cart cart) {
+		Long id = cart.getId();
 		Cart item = em.getReference(Cart.class,  id);
 		em.remove(item);
 	}

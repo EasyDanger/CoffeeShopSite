@@ -86,6 +86,7 @@ public class CustomerPageController {
 		mv.addObject("Name", name);
 		return mv;
 	}
+
 //	@RequestMapping("/addToCart/{item}")
 //	public ModelAndView addToCart(@PathVariable("item") String item,
 //			HttpSession session, RedirectAttributes redir) {
@@ -100,21 +101,21 @@ public class CustomerPageController {
 //		
 //	}
 	@RequestMapping("/addToCart/{item}")
-	public ModelAndView addToCart(@PathVariable("item") String item,
-			HttpSession session, RedirectAttributes redir) {
+	public ModelAndView addToCart(@PathVariable("item") String item, HttpSession session, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView("menuCust");
 		MenuItem mi = menuDao.findByName(item);
 		Customer cust = (Customer) session.getAttribute("Customer");
-		List<Cart> carts = (List<Cart>) session.getAttribute("Cart");		
+		List<Cart> carts = (List<Cart>) session.getAttribute("Cart");
 		boolean isThere = false;
-		for (Cart cart: carts) {
-			if ((mi.getId() == cart.getMenuId()) && (cart.getCust() == cust.getId())) {
+		for (Cart cart : carts) {
+			if ((mi.getName().equals(cart.getMenuId())) && (cart.getCust() == cust.getId())) {
 				cart.addQuant();
 				isThere = true;
+				cartDao.update(cart);
 			}
 		}
 		if (!isThere) {
-			Cart cart = new Cart(mi.getId(), cust.getId());
+			Cart cart = new Cart(mi.getName(), cust.getId());
 			cartDao.create(cart);
 			carts.add(cart);
 		}
@@ -122,4 +123,74 @@ public class CustomerPageController {
 		session.setAttribute("Cart", carts);
 		return new ModelAndView("redirect:/menuCustomer");
 	}
+
+	@RequestMapping("/showCart")
+	public ModelAndView showCart(HttpSession session, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView("showCart");
+		List<Cart> carts = (List<Cart>) session.getAttribute("Cart");
+		Customer cust = (Customer) session.getAttribute("Customer");
+		System.out.println(carts);
+		for (Cart cart : carts) {
+			cart.setPrice(menuDao.findByName(cart.getMenuId()));
+		}
+
+		mv.addObject("Cart", carts);
+		mv.addObject("Customer", cust);
+		return mv;
+	}
+
+	@RequestMapping("/plusCart/{item}")
+	public ModelAndView plusCart(@PathVariable("item") String item, HttpSession session, RedirectAttributes redir) {
+		MenuItem mi = menuDao.findByName(item);
+		Customer cust = (Customer) session.getAttribute("Customer");
+		List<Cart> carts = (List<Cart>) session.getAttribute("Cart");
+		for (Cart cart : carts) {
+			if ((mi.getName().equals(cart.getMenuId())) && (cart.getCust() == cust.getId())) {
+				cart.addQuant();
+				cart.setPrice(mi);
+				cartDao.update(cart);
+				carts = cartDao.findByCust(cust.getId());
+			}
+		}
+		session.setAttribute("Customer", cust);
+		session.setAttribute("Cart", carts);
+		return new ModelAndView("redirect:/showCart");
+	}
+
+	@RequestMapping("/minusCart/{item}")
+	public ModelAndView minusCart(@PathVariable("item") String item, HttpSession session, RedirectAttributes redir) {
+		MenuItem mi = menuDao.findByName(item);
+		Customer cust = (Customer) session.getAttribute("Customer");
+		List<Cart> carts = (List<Cart>) session.getAttribute("Cart");
+		for (Cart cart : carts) {
+			if ((mi.getName().equals(cart.getMenuId())) && (cart.getCust() == cust.getId()) && (cart.getQuant() > 1)) {
+				cart.minusQuant();
+				cart.setPrice(mi);
+				cartDao.update(cart);
+				carts = cartDao.findByCust(cust.getId());
+			}
+
+		}
+		session.setAttribute("Customer", cust);
+		session.setAttribute("Cart", carts);
+		return new ModelAndView("redirect:/showCart");
+	}
+
+	@RequestMapping("/removeCart/{item}")
+	public ModelAndView removeCart(@PathVariable("item") String item, HttpSession session, RedirectAttributes redir) {
+		MenuItem mi = menuDao.findByName(item);
+		Customer cust = (Customer) session.getAttribute("Customer");
+		List<Cart> carts = (List<Cart>) session.getAttribute("Cart");
+		for (Cart cart : carts) {
+			if ((mi.getName().equals(cart.getMenuId())) && (cart.getCust() == cust.getId())) {
+				cartDao.delete(cart);
+
+			}
+		}
+		carts = cartDao.findByCust(cust.getId());
+		session.setAttribute("Customer", cust);
+		session.setAttribute("Cart", carts);
+		return new ModelAndView("redirect:/showCart");
+	}
+
 }

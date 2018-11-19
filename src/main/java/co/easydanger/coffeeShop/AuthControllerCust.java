@@ -46,10 +46,11 @@ public class AuthControllerCust {
 			mav.addObject("message", "We're sorry. That combination has not been prepped for processing.");
 			return mav;
 		}
-
+		
+		List<Cart> carts = cartDao.findByCust(cust.getId());
 		// On successful login, add the user to the session.
 		session.setAttribute("Customer", cust);
-
+		session.setAttribute("Cart", carts);
 		// A flash message will only show on the very next page. Then it will go away.
 		// It is useful with redirects since you can't add attributes to the mav.
 		redir.addFlashAttribute("message", "Welcome!");
@@ -78,6 +79,7 @@ public class AuthControllerCust {
 			@RequestParam("email") String email, @RequestParam("cardNum") String cardNum,
 			@RequestParam("Name") String name, @RequestParam("passWord") String pWord, HttpSession session,
 			RedirectAttributes redir) {
+		
 		Customer cust = new Customer();
 		cust.setName(name);
 		cust.setFname(firstName);
@@ -128,7 +130,7 @@ public class AuthControllerCust {
 		cust.setPword(pWord);
 		
 		custDao.create(cust);
-		List<Cart> carts = cartDao.findAll();
+		List<Cart> carts = cartDao.findByCust(cust.getId());
 		
 		// On successful sign-up, add the user to the session.
 		session.setAttribute("Customer", cust);

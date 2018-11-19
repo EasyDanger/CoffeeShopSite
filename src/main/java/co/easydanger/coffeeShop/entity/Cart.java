@@ -8,18 +8,21 @@ import javax.persistence.Id;
 
 @Entity
 public class Cart {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Long menuId;
-	private Integer quant = 1;
+	private String menuId;
+	private Integer quant = 0;
+	private Double price = 0.00;
     private Long customerId;
     
     public Cart() {
     }
     
-	public Cart(Long menuId, Long customerId) {
+	public Cart(String menuId, Long customerId) {
 		super();
+		quant += 1;
 		this.menuId = menuId;
 		this.customerId = customerId;
 		}
@@ -29,10 +32,10 @@ public class Cart {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getMenuId() {
+	public String getMenuId() {
 		return menuId;
 	}
-	public void setMenuId(Long menuId) {
+	public void setMenuId(String menuId) {
 		this.menuId = menuId;
 	}
 	public Integer getQuant() {
@@ -47,12 +50,22 @@ public class Cart {
 	public void setCust(Long customerId) {
 		this.customerId = customerId;
 	}
-	public void addToCart(MenuItem mi) {
-
-	}
 	
 	public void addQuant() {
-		quant += 1;
+		this.quant += 1;
+	}
+	public void setPrice(MenuItem mi) {
+
+		Double p = mi.getPrice();
+		this.price = this.quant * p;
+	}
+	public Double getPrice() {
+		return this.price;
+	}
+
+	public void minusQuant() {
+		this.quant -=1;
+		
 	}
 
 }

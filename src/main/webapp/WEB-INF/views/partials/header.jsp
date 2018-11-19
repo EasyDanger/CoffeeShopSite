@@ -16,8 +16,12 @@
 			<c:choose>
 				<c:when test="${ not empty Customer }">
 			Welcome, ${ Customer.name }
-			<li>
-			<a href="/logout">Logout</a></li>
+						<li>
+						<a href="/showCart">Cart</a>
+					</li>
+					<li>
+						<a href="/logout">Logout</a>
+					</li>
 				</c:when>
 				<c:otherwise>
 					<li>
