@@ -50,33 +50,30 @@ public class CoffeeController {
 		return new ModelAndView("redirect:/menu/");
 	}
 
-	@RequestMapping("/members/{Name}")
-	public ModelAndView membs(@PathVariable("Name") String name) {
+	@RequestMapping("/members")
+	public ModelAndView membs(HttpSession session, RedirectAttributes redir) {
 		List<User> list = new ArrayList<User>();
 		list = userDao.findAll();
-		ModelAndView mv = new ModelAndView("membersNon", "Name", name);
-		if (userDao.findByName(name).isAdmin()) {
-			mv = new ModelAndView("members", "Name", name);
-		}
+		ModelAndView mv = new ModelAndView("members");
 		mv.addObject("list", list);
 		return mv;
 	}
 
-	@RequestMapping("/member/toggle/{Name}/update/{newName}")
-	public ModelAndView toggleAdmin(@PathVariable("Name") String name, @PathVariable("newName") String newName) {
+	@RequestMapping("/member/toggle/{newName}")
+	public ModelAndView toggleAdmin(@PathVariable("newName") String newName, HttpSession session, RedirectAttributes redir) {
 		User nuser = userDao.findByName(newName);
 		nuser.toggleAdmin();
 		userDao.update(nuser);
-		System.out.println(nuser);
-		return new ModelAndView("redirect:/members/" + name);
+
+		return new ModelAndView("redirect:/members");
 	}
 
-	@RequestMapping("/member/delete/{Name}/update/{newName}")
-	public ModelAndView deleteUser(@PathVariable("Name") String name, @PathVariable("newName") String newName) {
+	@RequestMapping("/member/delete/{newName}")
+	public ModelAndView deleteUser(@PathVariable("newName") String newName, HttpSession session, RedirectAttributes redir) {
 		User nuser = userDao.findByName(newName);
 		Long x = nuser.getId();
 		userDao.delete(x);
-		return new ModelAndView("redirect:/members/" + name);
+		return new ModelAndView("redirect:/members");
 	}
 
 	@RequestMapping("/ill")

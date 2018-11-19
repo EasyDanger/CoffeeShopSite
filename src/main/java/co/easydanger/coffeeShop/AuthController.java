@@ -51,17 +51,6 @@ public class AuthController {
 		redir.addFlashAttribute("message", "Welcome, " + user.getName());
 		return new ModelAndView("redirect:/ill");
 	}
-//
-//	@RequestMapping("/logout")
-//	public ModelAndView logout(HttpSession session, RedirectAttributes redir) {
-//		// invalidate clears the current user session and starts a new one.
-//		session.invalidate();
-//
-//		// A flash message will only show on the very next page. Then it will go away.
-//		// It is useful with redirects since you can't add attributes to the mav.
-//		redir.addFlashAttribute("message", "We will see you next time. Next time.");
-//		return new ModelAndView("redirect:/");
-//	}
 
 	@RequestMapping("/traitor")
 	public ModelAndView signup() {

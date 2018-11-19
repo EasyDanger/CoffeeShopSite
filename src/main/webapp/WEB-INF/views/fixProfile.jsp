@@ -67,7 +67,7 @@
 					<input
 						name="email"
 						required
-						value=${ Customer.email }						
+						value="${ Customer.email }"						
 						placeholder="everythingisfine@coffee®.com"
 						pattern="[a-zA-Z\\d]+@[a-zA-Z\\d]{4,10}.[a-zA-Z\\d]{2,3}"
 						class="input"
@@ -79,7 +79,7 @@
 				<span style="float: right;">
 					<input
 						name="cardNum"
-						value=${ Customer.cardNum }						
+						value="${ Customer.cardNum }"						
 						placeholder="#### #### #### ####"
 						pattern="\d{4} \d{4} \d{4} \d{4}"
 						class="input"
@@ -92,7 +92,7 @@
 					<input
 						name="Name"
 						required
-						value=${ Customer.name }
+						value="${ Customer.name }"
 						maxlength="16"
 						placeholder="Human"
 						class="input"

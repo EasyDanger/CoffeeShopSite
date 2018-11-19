@@ -1,7 +1,7 @@
 <%@ page
 	language="java"
-	contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
+	contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
 %>
 <%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core"
@@ -14,11 +14,12 @@
 	rel="stylesheet"
 	href="http://localhost:8080/styles.css"
 >
-<meta charset="ISO-8859-1">
+<meta charset="ISO-UTF-8">
 <title>This is you, for Us</title>
 </head>
 <body>
-	<h1>coffee® Members</h1>
+	<%@include file="partials/header.jsp"%>
+	<h1>coffeeÂ® Members</h1>
 	<main class="flex">
 	<div class="card1">
 		<table class="table">
@@ -39,20 +40,46 @@
 					<tr>
 						<td>${item.name}</td>
 						<td>${item.email}</td>
-						<td><c:set var = "Admin" scope = "session" value = "${item.admin}"/>
-      <c:if test = "${Admin}">
-         <p><c:out value = "Admin"/><p>
-      </c:if>
-																		
+						<td>
+							<c:set
+								var="Admin"
+								scope="session"
+								value="${item.admin}"
+							/>
+							<c:if test="${Admin}">
+								<p>
+									<c:out value="Admin" />
+								<p>
+							</c:if>
+
 						</td>
-						<td><a href="/member/toggle/${ Name }/update/${ item.name }" class="botton">Toggle Admin</a></td>
-						<td><a href="/member/delete/${ Name }/update/${ item.name }" class="botton">Delete</a></td>
+						<c:choose>
+							<c:when test="${ User.admin }">
+								<td>
+								<td>
+									<a
+										href="/member/toggle/${ item.name }"
+									><button class="botton">Toggle Admin</button></a>
+								</td>
+								<td>
+									<a
+										href="/member/delete/${ item.name }"
+									><button class="botton">Delete</button></a>
+								</td>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-	
-	<p><a href="/ill/${ Name }" class="botton">Return to menu.</a></p>
+
+		<p>
+			<a
+				href="/ill/${ Name }"
+			><button class="botton">Return to menu.</button></a>
+		</p>
 	</div>
 	</main>
 </body>
