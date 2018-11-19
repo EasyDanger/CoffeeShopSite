@@ -1,7 +1,7 @@
 # CoffeeShopSite
 Project to create a mock, but fully functional employee login site for a coffee shop with dubious motivation
 
-This project was originally planned to be an employee login site allowing for employees to login and view menu items and the basic information of other employees. Employees with the "Admin" attribute were authorized with further privileges, allowing them to delete and edit both menu items and employees, as well as bestowing "Admin" rights. 
+This project was originally planned to be an employee login site allowing for employees to login and view menu items and the basic information of other employees.
 
 The coffee shop may or may not be run by some sort of non-human entity, but that's not really important to the code.
 
