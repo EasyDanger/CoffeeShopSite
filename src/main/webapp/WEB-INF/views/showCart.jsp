@@ -70,9 +70,17 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<h3>Your subtotal is: $${ Subtotal }</h3>
 		<main class="flux"> <a href="/">
 			<button class="botton">coffee® Home</button>
-		</a></main>
+		</a>
+		<a href="/menuCustomer">
+			<button class="botton">Continue shopping</button>
+		</a>
+				<a href="/checkout">
+			<button class="botton">Checkout!</button>
+		</a>
+		</main>
 	</div>
 	</main>
 </body>

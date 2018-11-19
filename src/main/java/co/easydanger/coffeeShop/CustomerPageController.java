@@ -130,10 +130,13 @@ public class CustomerPageController {
 		List<Cart> carts = (List<Cart>) session.getAttribute("Cart");
 		Customer cust = (Customer) session.getAttribute("Customer");
 		System.out.println(carts);
+		Double subtotal = 0.00;
 		for (Cart cart : carts) {
 			cart.setPrice(menuDao.findByName(cart.getMenuId()));
+			subtotal += cart.getPrice();
 		}
-
+		
+		mv.addObject("Subtotal", String.format("%.2f", subtotal));
 		mv.addObject("Cart", carts);
 		mv.addObject("Customer", cust);
 		return mv;
@@ -191,6 +194,45 @@ public class CustomerPageController {
 		session.setAttribute("Customer", cust);
 		session.setAttribute("Cart", carts);
 		return new ModelAndView("redirect:/showCart");
+	}
+	
+	@RequestMapping("/checkout")
+	public ModelAndView checkout(HttpSession session, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView("checkout");
+		Customer cust = (Customer) session.getAttribute("Customer");
+		List<Cart> carts = (List<Cart>) session.getAttribute("Cart");
+		Double subtotal = 0.00;
+		Double total = 0.00;
+		Double tax = 0.00;
+		for (Cart cart : carts) {
+			subtotal += cart.getPrice();
+		}
+		tax = subtotal * 0.06;
+		total = tax + subtotal;
+		carts = cartDao.findByCust(cust.getId());
+		mv.addObject("Subtotal", String.format("%.2f", subtotal));
+		mv.addObject("Total", String.format("%.2f", total));
+		mv.addObject("Tax", String.format("%.2f", tax));
+		mv.addObject("Customer", cust);
+		
+		session.setAttribute("Customer", cust);
+		session.setAttribute("Cart", carts);
+		return mv;
+	}
+	
+	@RequestMapping("/transComplete")
+	public ModelAndView paid(HttpSession session, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView("transComplete");
+		List<Cart> carts = (List<Cart>) session.getAttribute("Cart");
+		Customer cust = (Customer) session.getAttribute("Customer");
+		for (Cart cart: carts) {
+			if (cart.getCust() == cust.getId()) {
+				cartDao.delete(cart);
+			}
+		}
+		carts = cartDao.findByCust(cust.getId());
+		session.setAttribute("Cart", carts);
+		return mv;
 	}
 
 }
