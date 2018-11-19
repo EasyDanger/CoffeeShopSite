@@ -1,4 +1,4 @@
-package co.easydanger.coffeeShop;
+package co.easydanger.coffeeShop.dao;
 
 import java.io.IOException;
 import java.nio.file.Files;

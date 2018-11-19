@@ -41,11 +41,6 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public void giveAdmin(User current, User newAdmin) {
-		if(current.admin) {
-			newAdmin.admin = true;
-		}
-	}
 
 	public String getName() {
 		return name;

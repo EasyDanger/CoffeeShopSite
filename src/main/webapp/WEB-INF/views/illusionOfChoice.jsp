@@ -1,7 +1,7 @@
 <%@ page
 	language="java"
-	contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
+	contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
 %>
 <%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core"
@@ -14,13 +14,14 @@
 	rel="stylesheet"
 	href="http://localhost:8080/styles.css"
 >
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>The Illusion of Choice</title>
 </head>
 <body>
 	<%@include file="partials/header.jsp"%>
 	<br>
-	<h3>Welcome, ${ Name }!</h3>
+		<h3 class="message">${ message }</h3>
+	
 	<h1>What would you like to do?</h1>
 	<main class="flex">
 	<div class="card">
@@ -29,7 +30,7 @@
 			align="center">
 		<div>
 		<button class="botton2">View/Edit your profile</button></div>
-		 <a href="/menu/${ Name }">
+		 <a href="/menu">
 			<button class="botton2">View/Edit the menu</button>
 		</a> </main>
 		<main
@@ -37,7 +38,7 @@
 			align="center"
 		> <a href="/members/${ Name }">
 			<button class="botton2">View member list</button>
-		</a> <a href="/">
+		</a> <a href="/logout">
 			<button class="botton2">Logout</button>
 		</a>
 		</main>

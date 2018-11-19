@@ -10,14 +10,30 @@
 <div class="main-nav">
 	<ul class="nav">
 		<li class="name">
-			<a href="/">coffee®</a>
+			<c:choose>
+				<c:when test="${ not empty User }">
+					<a href="/ill">coffee®</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/">coffee®</a>
+				</c:otherwise>
+			</c:choose>
 		</li>
 		<li>
 			<c:choose>
 				<c:when test="${ not empty Customer }">
 			Welcome, <a href="/fixProfile">${ Customer.name }</a>
-						<li>
+					<li>
 						<a href="/showCart">Cart</a>
+					</li>
+					<li>
+						<a href="/logout">Logout</a>
+					</li>
+				</c:when>
+				<c:when test="${ not empty User }">
+			Welcome, <a href="/ill/">${ User.name }</a>
+					<li>
+						<a href="/ill">Menu</a>
 					</li>
 					<li>
 						<a href="/logout">Logout</a>

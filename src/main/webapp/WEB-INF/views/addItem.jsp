@@ -1,7 +1,7 @@
 <%@ page
 	language="java"
-	contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
+	contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
 %>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
 	rel="stylesheet"
 	href="http://localhost:8080/styles.css"
 >
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>We Need Your DATA.</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
 	<main class="flex">
 	<div class="card">
 		<form
-			action="/menuAdd/${ Name }"
+			action="/menuAdd"
 			method="post"
 		>
 			<p>
@@ -67,7 +67,7 @@
 			<br>
 			<br>
 			<div style="text-align: center">
-				<button>SUBMIT.</button>
+				<button class="botton2">SUBMIT.</button>
 			</div>
 		</form>
 	</div>

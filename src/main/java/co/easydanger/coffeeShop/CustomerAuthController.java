@@ -20,7 +20,7 @@ import co.easydanger.coffeeShop.entity.Customer;
 import co.easydanger.coffeeShop.github.GithubService;
 
 @Controller
-public class AuthControllerCust {
+public class CustomerAuthController {
 
 	@Autowired
 	CustomerDao custDao;

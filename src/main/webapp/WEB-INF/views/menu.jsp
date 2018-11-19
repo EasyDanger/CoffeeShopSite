@@ -1,7 +1,7 @@
 <%@ page
 	language="java"
-	contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
+	contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
 %>
 <%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core"
@@ -14,21 +14,27 @@
 	rel="stylesheet"
 	href="http://localhost:8080/styles.css"
 >
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>This is the menu</title>
 </head>
 <body>
 	<%@include file="partials/header.jsp"%>
 	<br>
-	<h1>coffee® Menu Items</h1>
+	<h1>coffeeÂ® Menu Items</h1>
 	<main class="flex">
+
 	<div class="card1">
+			<p class="message">${ message }</p>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>Item</th>
 					<th>Description</th>
-					<th>Price</th>
+					<th>
+						Price
+						<br>
+						<br>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,13 +46,38 @@
 						<td>${item.name}</td>
 						<td>${item.description}</td>
 						<td>$${item.price}</td>
-						<td><a href="/menu/delete/${ Name }/update/${ item.name }" class="botton">Delete</a></td>
+						<c:choose>
+							<c:when test="${ User.admin }">
+								<td>
+									<a href="/removeMenu/${item.name}">
+										<button class="botton1">Remove from menu</button>
+									</a>
+								</td>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-	<p><a href="/addItem/${ Name }">Add item to this menu.</a></p>
-	<p><a href="/ill/${ Name }">Return to user menu.</a></p>
+		<main class="flex">
+		<c:choose>
+			<c:when test="${ User.admin }">
+				
+					<a href="/addItem">
+						<button class="botton1">Add item to this menu</button>
+					</a>
+				
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>
+		
+			<a href="/ill">
+				<button class="botton1">Return to menu</button>
+			</a>
+		</main>
 	</div>
 	</main>
 </body>

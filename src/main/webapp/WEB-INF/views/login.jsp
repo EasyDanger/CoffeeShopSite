@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core"
 	prefix="c"
@@ -11,7 +11,7 @@
 	rel="stylesheet"
 	href="styles.css"
 >
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Login Page</title>
 </head>
 <body>
@@ -21,7 +21,10 @@
 
 	<main class="flex">
 	<div class="card2">
-		<form action="/login2">
+		<form action="/login"
+		method="post">
+			<p class="message">${ message }</p>
+		
 			<p>
 				User Name:
 				<span style="float: right;">
@@ -52,7 +55,7 @@
 			<br>
 			<br>
 			<div style="text-align: center">
-				<button>Login.</button>
+				<button class="botton2">Login.</button>
 			</div>
 		</form>
 

@@ -33,87 +33,21 @@ public class CoffeeController {
 		return new ModelAndView("index");
 	}
 
-	@RequestMapping("/traitor")
-	public ModelAndView mileForm() {
-		return new ModelAndView("traitor");
-	}
-
-	@RequestMapping("/verifyTraitor")
-	public ModelAndView verifyTraitor(@RequestParam("Name") String name, @RequestParam("firstName") String fName,
-			@RequestParam("lastName") String lName, @RequestParam("email") String email,
-			@RequestParam("phone") String phone, @RequestParam("passWord") String pWord,
-			@RequestParam("passWord2") String pWord2, @RequestParam("box") boolean box) throws IOException {
-		ModelAndView mv = new ModelAndView("verifyTraitor");
-		// Need to finish dealing with this box.
-		mv.addObject("Name", name);
-		mv.addObject("firstName", fName);
-		mv.addObject("lastName", lName);
-		mv.addObject("email", email);
-		mv.addObject("phone", phone);
-		mv.addObject("passWord", pWord);
-
-		return mv;
-	}
-
-	@RequestMapping("/addTraitor")
-	public ModelAndView addTraitor(@RequestParam("firstName") String fName, @RequestParam("Name") String name,
-			@RequestParam("lastName") String lName, @RequestParam("email") String email,
-			@RequestParam("phone") String phone, @RequestParam("passWord") String pWord) throws IOException {
-		ModelAndView mv = new ModelAndView("addTraitor");
-		User user = new User();
-		user.setName(name);
-		user.setFname(fName);
-		user.setLname(lName);
-		user.setEmail(email);
-		user.setPhone(phone);
-		user.setPword(pWord);
-		UserFile.writeApp(user);
-		userDao.create(user);
-		mv.addObject("user", user);
-		return mv;
-
-	}
-
-	@RequestMapping("/login")
-	public ModelAndView login() {
-		
-		ModelAndView mv = new ModelAndView("login");
-		return mv;
-	}
-
-	@RequestMapping("/login2")
-	public ModelAndView login2(@RequestParam("userName") String name, @RequestParam("passWord") String pWord) {
-		ModelAndView mv = new ModelAndView("loginE");
-		List<User> list = userDao.findAll();
-		
-		for (User user: list) {
-			if (name.equals(user.getName()) && pWord.equals(user.getPword())) {
-				mv = new ModelAndView("redirect:/ill/"+ name);
-				System.out.println("hello");
-			}
-		}
-		return mv;
-		}
-	
-	@RequestMapping("/menu/{Name}")
-	public ModelAndView menu(@PathVariable("Name") String name) {
-
+	@RequestMapping("/menu")
+	public ModelAndView menu(HttpSession session, RedirectAttributes redir) {
 		List<MenuItem> list = new ArrayList<MenuItem>();
 		list = menuItemDao.findAll();
-		if (userDao.findByName(name).isAdmin()) {
-			ModelAndView mv = new ModelAndView("menu");
-		mv.addObject("list", list);	
+		ModelAndView mv = new ModelAndView("menu");
+		mv.addObject("list", list);
 		return mv;
-		}
-		return new ModelAndView("redirect:/menu/" + name + "/cust");
 	}
-	
-	@RequestMapping("/menu/delete/{Name}/update/{OldItem}")
-	public ModelAndView deleteMenu(@PathVariable("Name") String name, @PathVariable("OldItem") String oldItem) {
+
+	@RequestMapping("/removeMenu/{OldItem}")
+	public ModelAndView deleteMenu(@PathVariable("OldItem") String oldItem) {
 		MenuItem oItem = menuItemDao.findByName(oldItem);
 		Long x = oItem.getId();
 		menuItemDao.delete(x);
-		return new ModelAndView("redirect:/menu/" + name);
+		return new ModelAndView("redirect:/menu/");
 	}
 
 	@RequestMapping("/members/{Name}")
@@ -127,7 +61,7 @@ public class CoffeeController {
 		mv.addObject("list", list);
 		return mv;
 	}
-	
+
 	@RequestMapping("/member/toggle/{Name}/update/{newName}")
 	public ModelAndView toggleAdmin(@PathVariable("Name") String name, @PathVariable("newName") String newName) {
 		User nuser = userDao.findByName(newName);
@@ -136,6 +70,7 @@ public class CoffeeController {
 		System.out.println(nuser);
 		return new ModelAndView("redirect:/members/" + name);
 	}
+
 	@RequestMapping("/member/delete/{Name}/update/{newName}")
 	public ModelAndView deleteUser(@PathVariable("Name") String name, @PathVariable("newName") String newName) {
 		User nuser = userDao.findByName(newName);
@@ -144,28 +79,24 @@ public class CoffeeController {
 		return new ModelAndView("redirect:/members/" + name);
 	}
 
-	@RequestMapping("/ill/{name}")
-	public ModelAndView ill(@PathVariable("name") String name) {
-		return new ModelAndView("illusionOfChoice", "Name", name);
+	@RequestMapping("/ill")
+	public ModelAndView ill(HttpSession session, RedirectAttributes redir) {
+		return new ModelAndView("illusionOfChoice");
 	}
-	
-	@RequestMapping("/addItem/{Name}")
-	public ModelAndView additem(@PathVariable("Name") String name) {
+
+	@RequestMapping("/addItem")
+	public ModelAndView additem() {
 		ModelAndView mv = new ModelAndView("addItem");
 		return mv;
 	}
-	
-	@PostMapping("/menuAdd/{Name}")
-	public ModelAndView menuAdd(@PathVariable("Name") String name, @RequestParam("itemName") String item, @RequestParam("Price") Double price, @RequestParam("Description") String desc) {
-		System.out.println(name + " " + item + " " + price + " " + desc);
+
+	@PostMapping("/menuAdd")
+	public ModelAndView menuAdd(@RequestParam("itemName") String item,
+			@RequestParam("Price") Double price, @RequestParam("Description") String desc, HttpSession session, RedirectAttributes redir) {
+
 		MenuItem mi = new MenuItem(item, price, desc);
 		menuItemDao.create(mi);
-		List<MenuItem> list = new ArrayList<MenuItem>();
-		list = menuItemDao.findAll();
-		System.out.println("helloall");
-		System.out.println(list);
-		ModelAndView mv = new ModelAndView("menu");
-		mv.addObject("list", list);
-		return mv;
+		redir.addFlashAttribute("message", "Your item has been added.");
+		return new ModelAndView("redirect:/menu");
 	}
 }
