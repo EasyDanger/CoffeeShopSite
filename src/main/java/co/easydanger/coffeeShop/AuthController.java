@@ -120,43 +120,43 @@ public class AuthController {
 		redir.addFlashAttribute("message", "Thanks for signing up!");
 		return new ModelAndView("redirect:/ill");
 	}
-//
-//	@RequestMapping("/fixProfile")
-//	public ModelAndView profile(HttpSession session, RedirectAttributes redir) {
-//		ModelAndView mv = new ModelAndView("fixProfile");
-//		return mv;
-//	}
-//
-//	@PostMapping("/fixProfile")
-//	public ModelAndView profile2(@RequestParam("firstName") String fName, @RequestParam("Name") String name,
-//			@RequestParam("lastName") String lName, @RequestParam("email") String email,
-//			@RequestParam("cardNum") String cardNum, @RequestParam("passWord") String pWord,
-//			@RequestParam(value = "newWord", required = false) String newWord, HttpSession session,
-//			RedirectAttributes redir) {
-//;
-//		Customer cust = (Customer) session.getAttribute("Customer");
-//		if (pWord.equals(cust.getpWord()) && !newWord.equals("")) {
-//			cust.setName(name);
-//			cust.setFname(fName);
-//			cust.setLname(lName);
-//			cust.setEmail(email);
-//			cust.setCardNum(cardNum);
-//			cust.setPword(newWord);	
-//			redir.addFlashAttribute("message", "Thank you for updating all of your precious into.");
-//
-//		} else if (pWord.equals(cust.getpWord())) {
-//			cust.setName(name);
-//			cust.setFname(fName);
-//			cust.setLname(lName);
-//			cust.setEmail(email);
-//			cust.setCardNum(cardNum);
-//			redir.addFlashAttribute("message", "Thank you for updating your info.");
-//		} else {
-//			redir.addFlashAttribute("message", "Check your password.");
-//		}
-//		userDao.update(cust);
-//		session.setAttribute("Customer", cust);
-//		return new ModelAndView("redirect:/fixProfile");
-//	}
+
+	@RequestMapping("/profile")
+	public ModelAndView profile(HttpSession session, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView("profile");
+		return mv;
+	}
+
+	@PostMapping("/profile")
+	public ModelAndView profile2(@RequestParam("firstName") String fName, @RequestParam("Name") String name,
+			@RequestParam("lastName") String lName, @RequestParam("email") String email,
+			@RequestParam("phone") String phone, @RequestParam("passWord") String pWord,
+			@RequestParam(value = "newWord", required = false) String newWord, HttpSession session,
+			RedirectAttributes redir) {
+;
+		User user = (User) session.getAttribute("User");
+		if (pWord.equals(user.getPword()) && !newWord.equals("")) {
+			user.setName(name);
+			user.setFname(fName);
+			user.setLname(lName);
+			user.setEmail(email);
+			user.setPhone(phone);
+			user.setPword(newWord);	
+			redir.addFlashAttribute("message", "Thank you for updating all of your precious into.");
+
+		} else if (pWord.equals(user.getPword())) {
+			user.setName(name);
+			user.setFname(fName);
+			user.setLname(lName);
+			user.setEmail(email);
+			user.setPhone(phone);
+			redir.addFlashAttribute("message", "Thank you for updating your info.");
+		} else {
+			redir.addFlashAttribute("message", "Check your password.");
+		}
+		userDao.update(user);
+		session.setAttribute("User", user);
+		return new ModelAndView("redirect:/profile");
+	}
 
 }

@@ -28,8 +28,8 @@
 		<main
 			class="flex"
 			align="center">
-		<div>
-		<button class="botton2">View/Edit your profile</button></div>
+		<div><a href="/profile">
+		<button class="botton2">View/Edit your profile</button></a></div>
 		 <a href="/menu">
 			<button class="botton2">View/Edit the menu</button>
 		</a> </main>

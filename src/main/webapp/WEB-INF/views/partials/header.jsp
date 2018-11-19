@@ -31,7 +31,7 @@
 					</li>
 				</c:when>
 				<c:when test="${ not empty User }">
-			Welcome, <a href="/ill/">${ User.name }</a>
+			Welcome, <a href="/profile">${ User.name }</a>
 					<li>
 						<a href="/ill">Menu</a>
 					</li>
