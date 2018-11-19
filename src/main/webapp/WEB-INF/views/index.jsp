@@ -28,11 +28,26 @@
 	<div class="card">
 		<h3>Welcome, human customer. Take a look at our menu to decide
 			how you would like to experience coffee®</h3>
-		<main class="flux"> <a href="/menu/customer">
-			<button class="botton1">See coffee® Menu</button>
-		</a> <a href="login/customer">
-			<button class="botton1">Indulge</button>
-		</a></main>
+
+		<c:choose>
+			<c:when test="${ not empty Customer }">
+				<main class="flux">
+				<div align="center">
+					<a href="/menuCustomer">
+						<button class="botton1">Order from coffee® Menu</button>
+					</a>
+				</div>
+				</main>
+			</c:when>
+			<c:otherwise>
+				<main class="flux"> <a href="/menuCustomer">
+					<button class="botton1">See coffee® Menu</button>
+				</a> <a href="/loginCustomer">
+					<button class="botton1">Indulge</button>
+				</a></main>
+			</c:otherwise>
+		</c:choose>
+
 	</div>
 
 	<div class="card2">

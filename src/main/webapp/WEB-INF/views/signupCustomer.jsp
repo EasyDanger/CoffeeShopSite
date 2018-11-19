@@ -1,7 +1,7 @@
 <%@ page
 	language="java"
-	contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
+	contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
 %>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
 	rel="stylesheet"
 	href="styles.css"
 >
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>We Need Your DATA.</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
 		<br>
 		<br>
 		<br>
-		Your data is safe with coffee®
+		Your data is safe with coffeeÂ®
 	</p>
 	<main class="flex">
 	<div class="card">
@@ -58,7 +58,7 @@
 					<input
 						name="email"
 						required
-						placeholder="everythingisfine@coffee®.com"
+						placeholder="everythingisfine@coffeeÂ®.com"
 						pattern="[a-zA-Z\\d]+@[a-zA-Z\\d]{4,10}.[a-zA-Z\\d]{2,3}"
 						class="input"
 					/>

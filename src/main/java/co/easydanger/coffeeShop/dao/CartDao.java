@@ -32,6 +32,10 @@ public class CartDao {
 		return em.createQuery("FROM Cart WHERE cust = :cust", Cart.class).setParameter("cust", cust).getSingleResult();
 	}
 	
+	public void addToCart() {
+		
+	}
+	
 	public void update(Cart item) {
 		em.merge(item);
 	}

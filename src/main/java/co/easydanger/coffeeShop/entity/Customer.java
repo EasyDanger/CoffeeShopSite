@@ -4,14 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="customer")
+@Table(name = "customer")
 public class Customer {
-	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name = "";
 	private String firstName = "";
@@ -19,12 +19,14 @@ public class Customer {
 	private String email = "";
 	private String pWord = "";
 	private String cardNum = "";
-	@OneToOne(mappedBy = "cust")
-	private Cart cart;
+//	@OneToOne(mappedBy = "cust")
+//	public Cart cart = new Cart();
+//	private Map<MenuItem, Integer> cart1 = new HashMap<MenuItem, Integer>();
 	private Long githubId;
-	
-	public Customer() {}
-	
+
+	public Customer() {
+	}
+
 	public Customer(Long id, String name, String fname, String lname, String email, String pword, String cardNum,
 			Cart cart) {
 		super();
@@ -35,7 +37,7 @@ public class Customer {
 		this.email = email;
 		this.pWord = pword;
 		this.cardNum = cardNum;
-		this.cart = cart;
+//		this.cart = cart1;
 	}
 
 	public Long getId() {
@@ -94,13 +96,19 @@ public class Customer {
 		this.cardNum = cardNum;
 	}
 
-	public Cart getCart() {
-		return cart;
-	}
-
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
+//	public Map<MenuItem, Integer> getCart() {
+//		return cart1;
+//	}
+//
+//	public void addToCart(MenuItem mi) {
+//		if (Vali.itemIsKey(mi, cart1)) {
+//			Integer val = this.cart1.get(mi);
+//			val += 1;
+//			this.cart1.put(mi, val);
+//		} else {
+//			this.cart1.put(mi, 1);
+//		}
+//	}
 
 	public Long getGithubId() {
 		return githubId;
@@ -110,11 +118,46 @@ public class Customer {
 		this.githubId = githubId;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getpWord() {
+		return pWord;
+	}
+
+	public void setpWord(String pWord) {
+		this.pWord = pWord;
+	}
+
+//	public void setCart(Map<MenuItem, Integer> cart) {
+//		this.cart1 = cart;
+//	}
+
+//	public Cart getCart1() {
+//		return cart;
+//	}
+//
+//	public void setCart1(Cart cart1) {
+//		this.cart = cart1;
+//	}
+
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", email=" + email + ", pWord=" + pWord + ", cardNum=" + cardNum + ", cart=" + cart + "]";
+				+ ", email=" + email + ", pWord=" + pWord + ", cardNum=" + cardNum+ "]";
 	}
-	
 
 }

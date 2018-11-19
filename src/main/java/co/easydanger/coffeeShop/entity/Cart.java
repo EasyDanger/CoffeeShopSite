@@ -1,16 +1,9 @@
 package co.easydanger.coffeeShop.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 
 @Entity
@@ -18,49 +11,48 @@ public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@OneToMany(mappedBy = "cart")
-	private List<MenuItem> menuItems = new ArrayList<>();
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id")
-    private Customer cust;
-	
-
-	public Cart(Long id) {
+	private Long menuId;
+	private Integer quant = 1;
+    private Long customerId;
+    
+    public Cart() {
+    }
+    
+	public Cart(Long menuId, Long customerId) {
 		super();
-		this.id = id;
-	}
-
-	public Cart(Long id, List<MenuItem> menuItems) {
-		super();
-		this.id = id;
-		this.menuItems = menuItems;
-	}
-
-	public Cart() {
-		// TODO Auto-generated constructor stub
-	}
-
+		this.menuId = menuId;
+		this.customerId = customerId;
+		}
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public Long getMenuId() {
+		return menuId;
+	}
+	public void setMenuId(Long menuId) {
+		this.menuId = menuId;
+	}
+	public Integer getQuant() {
+		return quant;
+	}
+	public void setQuant(Integer quant) {
+		this.quant = quant;
+	}
+	public Long getCust() {
+		return customerId;
+	}
+	public void setCust(Long customerId) {
+		this.customerId = customerId;
+	}
+	public void addToCart(MenuItem mi) {
 
-	public List<MenuItem> getMenuItems() {
-		return menuItems;
+	}
+	
+	public void addQuant() {
+		quant += 1;
 	}
 
-	public void setMenuItems(List<MenuItem> menuItems) {
-		this.menuItems = menuItems;
-	}
-
-	public Customer getCust() {
-		return cust;
-	}
-
-	public void setCust(Customer cust) {
-		this.cust = cust;
-	}
 }

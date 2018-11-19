@@ -1,7 +1,7 @@
 <%@ page
 	language="java"
-	contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
+	contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
 %>
 <%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core"
@@ -14,13 +14,13 @@
 	rel="stylesheet"
 	href="http://localhost:8080/styles.css"
 >
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>This is the menu</title>
 </head>
 <body>
 	<%@include file="partials/header.jsp"%>
 	<br>
-	<h1>coffee® Menu Items</h1>
+	<h1>coffeeÂ® Menu Items</h1>
 	<main class="flex">
 	<div class="card1">
 		<table class="table">

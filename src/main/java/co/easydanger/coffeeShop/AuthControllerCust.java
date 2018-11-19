@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.easydanger.coffeeShop.dao.CartDao;
 import co.easydanger.coffeeShop.dao.CustomerDao;
+import co.easydanger.coffeeShop.entity.Cart;
 import co.easydanger.coffeeShop.entity.Customer;
 import co.easydanger.coffeeShop.github.GithubService;
 
@@ -24,6 +26,8 @@ public class AuthControllerCust {
 	CustomerDao custDao;
 	@Autowired
 	GithubService githubService;
+	@Autowired
+	CartDao cartDao;
 
 	@RequestMapping("/loginCustomer")
 	public ModelAndView showLoginForm() {
@@ -122,10 +126,13 @@ public class AuthControllerCust {
 		cust.setEmail(email);
 		cust.setCardNum(cardNum);
 		cust.setPword(pWord);
+		
 		custDao.create(cust);
-
+		List<Cart> carts = cartDao.findAll();
+		
 		// On successful sign-up, add the user to the session.
 		session.setAttribute("Customer", cust);
+		session.setAttribute("Cart", carts);
 		// A flash message will only show on the very next page. Then it will go away.
 		// It is useful with redirects since you can't add attributes to the mav.
 		redir.addFlashAttribute("message", "Thanks for signing up!");

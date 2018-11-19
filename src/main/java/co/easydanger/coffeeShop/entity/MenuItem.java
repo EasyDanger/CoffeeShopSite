@@ -72,8 +72,8 @@ public class MenuItem implements Comparable<MenuItem> {
 		return name.compareTo(other.name);
 	}
 
-	public boolean checkName(String s) {
-		return name.equalsIgnoreCase(s);
+	public boolean checkName(MenuItem s) {
+		return this.name.equalsIgnoreCase(s.name);
 	}
 
 //	@Override
